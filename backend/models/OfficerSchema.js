@@ -2,37 +2,47 @@ import mongoose from "mongoose";
 
 const officerSchema = new mongoose.Schema(
   {
-    password: {
-        type: String,
-        required: true,
-    },
     email: {
       type: String,
       unique: true,
       required: true,
     },
+    password: {
+        type: String,
+        required: true,
+    },
     name: {
         type: String,
         required: true,
     },
+    role: {
+      type: String,
+      enum: ["officer"],
+      default: "officer",
+    },
+    dob: {
+      type: Date,
+      //required: true,
+    },
+    gender: {
+      type: String,
+      enum: ["Male", "Female", "Other"],
+      //required: true,
+    },
     phone: {
       type: String,
       unique: true,
-      required: true,
+      //required: true,
     },
     aadhaar: {
       type: String,
       unique: true,
-      required: true,
-    },
-    rtoOffice: {
-      type: String,
-      required: true,
+      //required: true,
     },
     designation: {
       type: String,
-      enum: ["Clerk", "Inspector", "Officer", "Admin"],
-      required: true,
+      enum: ["Clerk", "Inspector", "Admin"],
+      //required: true,
     },
     assignedApplications: [
       {

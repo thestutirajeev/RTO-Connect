@@ -15,29 +15,34 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    role: {
+      type: String,
+      enum: ["user"],
+      default: "user",
+    },
     dob: {
       type: Date,
-      required: true,
+      //required: true,
     },
     gender: {
       type: String,
       enum: ["Male", "Female", "Other"],
-      required: true,
+      //required: true,
     },
     address: {
       type: String,
-      required: true,
+      //required: true,
     },
     phone: {
       type: String,
       unique: true,
-      required: true,
+      //required: true,
     },
     
     aadhaar: {
       type: String,
       unique: true,
-      required: true,
+      //required: true,
     },
     applications: [
       {

@@ -10,15 +10,15 @@ const licenseSchema = new mongoose.Schema(
     licenseType: {
       type: String,
       enum: ["LMV", "HMV", "Two-Wheeler", "Transport"],
-      required: true,
+      //required: true,
     },
     issueDate: {
       type: Date,
-      required: true,
+      //required: true,
     },
     expiryDate: {
       type: Date,
-      required: true,
+      //required: true,
     },
     licenseStatus: {
       type: String,
@@ -31,7 +31,7 @@ const licenseSchema = new mongoose.Schema(
     },
     medicalCertificate: {
       type: Boolean,
-      required: true,
+      //required: true,
     },
   },
   { timestamps: true }
