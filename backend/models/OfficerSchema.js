@@ -44,6 +44,11 @@ const officerSchema = new mongoose.Schema(
       enum: ["Clerk", "Inspector", "Admin"],
       //required: true,
     },
+    isApproved: {
+      type: String,
+      enum: ["pending", "approved", "cancelled"],
+      default: "pending",
+    },
     assignedApplications: [
       {
         type: mongoose.Schema.Types.ObjectId,
