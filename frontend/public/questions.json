@@ -1,0 +1,52 @@
+[
+    {
+      "question": "What does a red traffic light mean?",
+      "options": ["Go", "Stop", "Slow Down", "None"],
+      "answer": "Stop"
+    },
+    {
+      "question": "When can you overtake a vehicle?",
+      "options": ["On a sharp turn", "When it is safe", "At intersections", "Near pedestrian crossings"],
+      "answer": "When it is safe"
+    },
+    {
+      "question": "What is the speed limit in a residential area?",
+      "options": ["30 km/h", "50 km/h", "80 km/h", "100 km/h"],
+      "answer": "50 km/h"
+    },
+    {
+      "question": "What should you do if you see a pedestrian crossing the road?",
+      "options": ["Speed up", "Stop and let them cross", "Honk to warn them", "Ignore and keep driving"],
+      "answer": "Stop and let them cross"
+    },
+    {
+      "question": "What does a yellow traffic light indicate?",
+      "options": ["Stop immediately", "Go faster", "Slow down and prepare to stop", "Ignore it"],
+      "answer": "Slow down and prepare to stop"
+    },
+    {
+      "question": "What is the purpose of a zebra crossing?",
+      "options": ["Parking cars", "Pedestrian crossing", "Bicycle lane", "Emergency vehicles only"],
+      "answer": "Pedestrian crossing"
+    },
+    {
+      "question": "What does a flashing red traffic light mean?",
+      "options": ["Stop and proceed when safe", "Speed up", "Go straight", "Turn left only"],
+      "answer": "Stop and proceed when safe"
+    },
+    {
+      "question": "What does a green arrow signal mean?",
+      "options": ["Stop", "Proceed in the indicated direction", "U-turn only", "Go slow"],
+      "answer": "Proceed in the indicated direction"
+    },
+    {
+      "question": "Who has the right of way at a four-way stop?",
+      "options": ["The first vehicle to stop", "The largest vehicle", "The fastest vehicle", "No one"],
+      "answer": "The first vehicle to stop"
+    },
+    {
+      "question": "What should you do if an ambulance is approaching with flashing lights and siren?",
+      "options": ["Speed up", "Stop and block the road", "Move to the side and let it pass", "Ignore it"],
+      "answer": "Move to the side and let it pass"
+    }
+  ]
