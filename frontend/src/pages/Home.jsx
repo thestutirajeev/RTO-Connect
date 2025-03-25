@@ -36,7 +36,7 @@ const Home = () => {
                     From vehicle registrations and driving license applications to permit management and compliance
                     tracking, our app makes everything faster, easier, and more efficient.
                   </p>
-                  <Link to='/apply-license'>
+                  <Link to='/apply-dllicense'>
                     <button className='btn' >Apply Driving Licence</button>
                   </Link>
                 </div>
@@ -107,7 +107,7 @@ const Home = () => {
               <p className="text-[16px] leadinf-7 text-textColor font-[400] mt-4 text-center">
                 Choose from a range of RTO services, from license applications to vehicle registration.
               </p>
-                <Link to='/apply-license' className='w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E] mt-[30px] mx-auto flex items-center justify-center group hover:bg-primaryColor hover:border-none'>
+                <Link to='/apply-dllicense' className='w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E] mt-[30px] mx-auto flex items-center justify-center group hover:bg-primaryColor hover:border-none'>
                 <BsArrowRight className=' group-hover:text-white w-6 h-5' />
               </Link>
             
@@ -125,7 +125,7 @@ const Home = () => {
                 <p className="text-[16px] leadinf-7 text-textColor font-[400] mt-4 text-center">
                   Quickly locate the nearest RTO office to access services without hassle.
                 </p>
-                <Link to='/apply-license' className='w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E] mt-[30px] mx-auto flex items-center justify-center group hover:bg-primaryColor hover:border-none'>
+                <Link to='/apply-dllicense' className='w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E] mt-[30px] mx-auto flex items-center justify-center group hover:bg-primaryColor hover:border-none'>
                   <BsArrowRight className=' group-hover:text-white w-6 h-5' />
                 </Link>
               
@@ -143,7 +143,7 @@ const Home = () => {
               <p className="text-[16px] leadinf-7 text-textColor font-[400] mt-4 text-center">
                 Easily schedule your RTO visit at your convenience, avoiding long wait times.
               </p>
-                <Link to='/apply-license' className='w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E] mt-[30px] mx-auto flex items-center justify-center group hover:bg-primaryColor hover:border-none'>
+                <Link to='/apply-dllicense' className='w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E] mt-[30px] mx-auto flex items-center justify-center group hover:bg-primaryColor hover:border-none'>
                   <BsArrowRight className=' group-hover:text-white w-6 h-5' />
                 </Link>
               </div>
@@ -187,7 +187,7 @@ const Home = () => {
                     3. Track Your Status – Get real-time updates on your applications and approvals.
                   </li>
                 </ul>
-                <Link to="/">
+                <Link to="/services">
                   <button className='btn'>Learn More</button>
                 </Link>
               </div>
@@ -233,7 +233,7 @@ const Home = () => {
             <p className='text__para text-center'>
               We are committed to providing seamless and efficient services, ensuring hassle-free 
               vehicle registration, licensing, and compliance. With a customer-first approach, each 
-              office upholds high standards of transparency and innovation in transport administration. 🚗✅
+              office upholds high standards of transparency and innovation in transport administration.
             </p>
           </div>
           <RTOOfficeList />

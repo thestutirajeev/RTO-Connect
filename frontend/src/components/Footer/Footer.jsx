@@ -11,7 +11,7 @@ const socialLinks = [
     icon: <AiFillYoutube className="group-hover:text-white w-4 h-5" />,
   },
     {
-    path: "https://www.github.com/ishjaiswal7",
+    path: "https://www.github.com/thestutirajeev",
     icon: <AiFillGithub className="group-hover:text-white w-4 h-5" />,
   },
     {
@@ -31,7 +31,7 @@ const quickLinks01 = [
     display: "Home",
   },
   {
-    path: "/",
+    path: "/services",
     display: "About RTO Connect",
   },
   {
@@ -39,33 +39,33 @@ const quickLinks01 = [
     display: "Our Services",
   },
   {
-    path: "/",
+    path: "/contact",
     display: "News & Updates",
   },
 ];
 
 const quickLinks02 = [
   {
-    path: "/apply-license",
+    path: "/apply-dllicense",
     display: "Apply for a License",
   },
   {
-    path: "/",
+    path: "/register-vehicle",
     display: "Vehicle Registration",
   },
   {
-    path: "/apply-license",
+    path: "/apply-dllicense",
     display: "Book an Appointment",
   },
   {
-    path: "/apply-license",
+    path: "/apply-dllicense",
     display: "Track Application Status",
   },
 ];
 
 const quickLinks03 = [
   {
-    path: "/",
+    path: "/home",
     display: "FAQs",
   },
   {

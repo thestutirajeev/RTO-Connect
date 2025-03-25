@@ -4,13 +4,15 @@ import userImg from "../../assets/images/avatar-icon.png";
 import { NavLink, Link } from "react-router-dom";
 import { BiMenu } from "react-icons/bi";
 
+// Navigation Links
+import { useNavigate } from "react-router-dom";
 const navLinks = [
   {
     path:'/home',
     display: 'Home'
   },
   {
-    path:'/apply-license',
+    path:'/apply-dllicense',
     display: 'Apply for DL'
   },
   {
@@ -24,6 +26,7 @@ const navLinks = [
 ];
 
 const Header = () => {
+  const navigate = useNavigate();
 
   const headerRef = useRef(null);
   const menuRef = useRef(null);
@@ -86,13 +89,31 @@ const Header = () => {
               </figure>
             </Link>
           </div>
-
-          <Link to='/login'>
+          {/*===========Login Button================*/}
+          {!localStorage.getItem("token") ? (
+            <Link to="/login">
+              <button className="bg-primaryColor py-2 px-6 text-white font-[600] h-[44px] flex items-center rounded-[50px]">
+                Login
+              </button>
+            </Link>
+          ) : (
+            <button
+              className="bg-red-500 py-2 px-6 text-white font-[600] h-[44px] flex items-center rounded-[50px]"
+              onClick={() => {
+                localStorage.removeItem("token");
+                localStorage.removeItem("role");
+                navigate("/home");
+              }}>
+              Logout
+            </button>
+          )}
+          {/*===========Login Button End================*/}
+          {/*<Link to='/login'>
             <button className="bg-primaryColor py-2 px-6 text-white font-[600] h-[44px] flex items-center rounded-[50px]">
               Login
             </button>
           </Link>
-
+          */}
           <span className="md:hidden" onClick={toggleMenu}>
             <BiMenu className="w-6 h-6 cursor-pointer" />
           </span>
