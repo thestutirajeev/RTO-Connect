@@ -107,7 +107,7 @@ const Home = () => {
               <p className="text-[16px] leadinf-7 text-textColor font-[400] mt-4 text-center">
                 Choose from a range of RTO services, from license applications to vehicle registration.
               </p>
-                <Link to='/apply-dllicense' className='w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E] mt-[30px] mx-auto flex items-center justify-center group hover:bg-primaryColor hover:border-none'>
+                <Link to='/services' className='w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E] mt-[30px] mx-auto flex items-center justify-center group hover:bg-primaryColor hover:border-none'>
                 <BsArrowRight className=' group-hover:text-white w-6 h-5' />
               </Link>
             
@@ -125,7 +125,7 @@ const Home = () => {
                 <p className="text-[16px] leadinf-7 text-textColor font-[400] mt-4 text-center">
                   Quickly locate the nearest RTO office to access services without hassle.
                 </p>
-                <Link to='/apply-dllicense' className='w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E] mt-[30px] mx-auto flex items-center justify-center group hover:bg-primaryColor hover:border-none'>
+                <Link to='/rto-offices' className='w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E] mt-[30px] mx-auto flex items-center justify-center group hover:bg-primaryColor hover:border-none'>
                   <BsArrowRight className=' group-hover:text-white w-6 h-5' />
                 </Link>
               
