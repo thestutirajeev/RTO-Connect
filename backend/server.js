@@ -30,8 +30,8 @@ app.use("/api/applications", applicationRoutes);
 const contactRoutes = require("./routes/contactRoutes");
 app.use("/api/contact", contactRoutes);
 
-const adminRoutes = require("./routes/admin");
-app.use("/api/admin", adminRoutes);
+//const adminRoutes = require("./routes/admin");
+//app.use("/api/admin", adminRoutes);
 
 
 // Start the server
