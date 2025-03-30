@@ -8,15 +8,15 @@ import Doctors from "../pages/Doctors/Doctors";
 import DoctorDetails from "../pages/Doctors/DoctorDetails";
 
 
-import AdminHome from "../pages/AdminHome";
-import VehicleList from "../pages/VehicleList";
-import ViewApplication from "../pages/ViewApplication";
+import AdminHome from "../pages/Admin/AdminHome";
+import VehicleList from "../pages/Admin/VehicleList";
+import ViewApplication from "../pages/Admin/ViewApplication";
 
-import UserHome from "../pages/UserHome";
-import VehicleRegistration from "../pages/VehicleRegistration";
-import FitnessCheck from "../pages/FitnessCheck";
-import DLTest from "../pages/DLTest";
-import ApplicationForm from "../pages/ApplicationForm";
+import UserHome from "../pages/User/UserHome";
+import VehicleRegistration from "../pages/User/VehicleRegistration";
+import FitnessCheck from "../pages/User/FitnessCheck";
+import DLTest from "../pages/User/DLTest";
+import ApplicationForm from "../pages/User/ApplicationForm";
 
 import { Routes, Route } from 'react-router-dom';
 

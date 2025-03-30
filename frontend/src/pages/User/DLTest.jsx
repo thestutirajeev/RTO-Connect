@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Question from "../components/DLTest/Question";
-import Result from "../components/DLTest/Result";
+import Question from "../../components/DLTest/Question";
+import Result from "../../components/DLTest/Result";
 
 const DLTest = () => {
   const [questions, setQuestions] = useState([]);

@@ -1,11 +1,11 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import manageVehicle from "../assets/images/adminDashImage/manageVehicle.png";
-import fitnessCheck from "../assets/images/adminDashImage/fitnessCheck.png";
-import userManagement from "../assets/images/adminDashImage/userManagement.png";
-import approvalRequest from "../assets/images/adminDashImage/approvalRequest.png";
-import reports from "../assets/images/adminDashImage/reports.png";
-import settings from "../assets/images/adminDashImage/settings.png";
+import manageVehicle from "../../assets/images/adminDashImage/manageVehicle.png";
+import fitnessCheck from "../../assets/images/adminDashImage/fitnessCheck.png";
+import userManagement from "../../assets/images/adminDashImage/userManagement.png";
+import approvalRequest from "../../assets/images/adminDashImage/approvalRequest.png";
+import reports from "../../assets/images/adminDashImage/reports.png";
+import settings from "../../assets/images/adminDashImage/settings.png";
 const AdminHome = () => {
     const navigate = useNavigate();
     const sections = [

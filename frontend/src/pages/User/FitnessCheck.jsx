@@ -1,7 +1,7 @@
 import { useState } from "react";
-import VehicleForm from "../components/FitnessCheck/VehicleForm";
-import EligibilityCheck from "../components/FitnessCheck/EligibilityCheck";
-import Certificate from "../components/FitnessCheck/Certificate";
+import VehicleForm from "../../components/FitnessCheck/VehicleForm";
+import EligibilityCheck from "../../components/FitnessCheck/EligibilityCheck";
+import Certificate from "../../components/FitnessCheck/Certificate";
 
 const FitnessCheck = () => {
     const [vehicleData, setVehicleData] = useState(null);

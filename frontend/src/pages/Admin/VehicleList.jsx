@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import creta from "../assets/images/vehicleListImage/creta.png";
-import fortuner from "../assets/images/vehicleListImage/fortuner.png";
-import hondacity from "../assets/images/vehicleListImage/hondacity.png";
-import swift from "../assets/images/vehicleListImage/swift.png";
-import thar from "../assets/images/vehicleListImage/thar.png";
+import creta from "../../assets/images/vehicleListImage/creta.png";
+import fortuner from "../../assets/images/vehicleListImage/fortuner.png";
+import hondacity from "../../assets/images/vehicleListImage/hondacity.png";
+import swift from "../../assets/images/vehicleListImage/swift.png";
+import thar from "../../assets/images/vehicleListImage/thar.png";
 const VehicleList = () => {
     // Sample vehicle data
     const vehicleData = [
