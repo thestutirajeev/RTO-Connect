@@ -6,6 +6,8 @@ import userManagement from "../../assets/images/adminDashImage/userManagement.pn
 import approvalRequest from "../../assets/images/adminDashImage/approvalRequest.png";
 import reports from "../../assets/images/adminDashImage/reports.png";
 import settings from "../../assets/images/adminDashImage/settings.png";
+import heroBg from '../../assets/images/hero-bg.png';
+
 const AdminHome = () => {
     const navigate = useNavigate();
     const sections = [
@@ -28,7 +30,7 @@ const AdminHome = () => {
             description: "View, add, or remove users and their permissions.",
             image: userManagement,
             buttonText: "Manage Users",
-            path: "/admin-home",
+            path: "/user-list",
         },
         {
             title: "Approval Requests", 
@@ -54,7 +56,7 @@ const AdminHome = () => {
     ];
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-gray-100 to-gray-300 p-8">
+        <div className="min-h-screen bg-gradient-to-b from-gray-100 to-gray-300 p-8" style={{ backgroundImage: `url(${heroBg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
             <h1 className="text-4xl font-extrabold text-center text-gray-900 mb-10">Admin Dashboard</h1>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

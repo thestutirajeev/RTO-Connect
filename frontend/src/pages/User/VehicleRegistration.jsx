@@ -1,5 +1,6 @@
 import React, { use, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import heroBg from '../../assets/images/hero-bg.png';
 
 const VehicleRegistration = () => {
   const navigate = useNavigate();
@@ -60,75 +61,76 @@ const VehicleRegistration = () => {
   };
   
   return (
-    <div className="form-container mx-auto p-6 bg-gray-100 rounded-lg shadow-md">
-    <h2 className="text-2xl font-bold text-center mb-4">Vehicle Registration</h2>
-    <form onSubmit={handleSubmit} className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:gap-6">
-      {/* Owner Details */}
-      <h3 className="text-xl font-semibold col-span-full">Owner Details</h3>
-      <div>
-        <label className="block text-sm font-medium">Owner Name:</label>
-        <input type="text" name="ownerName" value={formData.ownerName} onChange={handleChange} required className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
-      </div>
-      <div>
-        <label className="block text-sm font-medium">Email:</label>
-        <input type="email" name="ownerEmail" value={formData.ownerEmail} onChange={handleChange} required className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
-      </div>
-      <div>
-        <label className="block text-sm font-medium">Address:</label>
-        <input type="text" name="ownerAddress" value={formData.ownerAddress} onChange={handleChange} required className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
-      </div>
-      <div>
-        <label className="block text-sm font-medium">Aadhar Number:</label>
-        <input type="text" name="ownerAadhar" value={formData.ownerAadhar} onChange={handleChange} required className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
-      </div>
-  
-      {/* Vehicle Details */}
-      <h3 className="text-xl font-semibold col-span-full">Vehicle Details</h3>
-      <div>
-        <label className="block text-sm font-medium">Manufacturer:</label>
-        <input type="text" name="vehicleManufacturer" value={formData.vehicleManufacturer} onChange={handleChange} required className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
-      </div>
-      <div>
-        <label className="block text-sm font-medium">Model:</label>
-        <input type="text" name="vehicleModel" value={formData.vehicleModel} onChange={handleChange} required className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
-      </div>
-      <div>
-        <label className="block text-sm font-medium">Type (Sedan/SUV):</label>
-        <input type="text" name="vehicleType" value={formData.vehicleType} onChange={handleChange} required className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
-      </div>
-      <div>
-        <label className="block text-sm font-medium">Fuel Type:</label>
-        <input type="text" name="fuelType" value={formData.fuelType} onChange={handleChange} required className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
-      </div>
-      <div>
-        <label className="block text-sm font-medium">Engine Number:</label>
-        <input type="text" name="engineNumber" value={formData.engineNumber} onChange={handleChange} required className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
-      </div>
-      <div>
-        <label className="block text-sm font-medium">Chassis Number:</label>
-        <input type="text" name="chassisNumber" value={formData.chassisNumber} onChange={handleChange} required className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
-      </div>
-  
-      {/* Registration Details */}
-      <h3 className="text-xl font-semibold col-span-full">Registration Details</h3>
-      <div>
-        <label className="block text-sm font-medium">Registration Number:</label>
-        <input type="text" name="registrationNumber" value={formData.registrationNumber} onChange={handleChange} required className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
-      </div>
-      <div>
-        <label className="block text-sm font-medium">Registration Start Date:</label>
-        <input type="date" name="registrationStartDate" value={formData.registrationStartDate} onChange={handleChange} required className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
-      </div>
-      <div>
-        <label className="block text-sm font-medium">Registration End Date:</label>
-        <input type="date" name="registrationEndDate" value={formData.registrationEndDate} onChange={handleChange} required className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
-      </div>
-  
-      <button type="submit" className="col-span-full w-auto px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors">Register</button>
-    </form>
-  </div>
+    <section style={{ backgroundImage: `url(${heroBg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <div className="form-container mx-auto p-6 rounded-lg shadow-md">
+        <h2 className="text-4xl font-bold text-center mb-4">Vehicle Registration</h2>
+        <form onSubmit={handleSubmit} className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:gap-6">
+          {/* Owner Details */}
+          <h3 className="text-xl font-semibold col-span-full">Owner Details</h3>
+          <div>
+            <label className="block text-sm font-medium">Owner Name:</label>
+            <input type="text" name="ownerName" value={formData.ownerName} onChange={handleChange} required className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          </div>
+          <div>
+            <label className="block text-sm font-medium">Email:</label>
+            <input type="email" name="ownerEmail" value={formData.ownerEmail} onChange={handleChange} required className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          </div>
+          <div>
+            <label className="block text-sm font-medium">Address:</label>
+            <input type="text" name="ownerAddress" value={formData.ownerAddress} onChange={handleChange} required className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          </div>
+          <div>
+            <label className="block text-sm font-medium">Aadhar Number:</label>
+            <input type="text" name="ownerAadhar" value={formData.ownerAadhar} onChange={handleChange} required className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          </div>
+      
+          {/* Vehicle Details */}
+          <h3 className="text-xl font-semibold col-span-full">Vehicle Details</h3>
+          <div>
+            <label className="block text-sm font-medium">Manufacturer:</label>
+            <input type="text" name="vehicleManufacturer" value={formData.vehicleManufacturer} onChange={handleChange} required className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          </div>
+          <div>
+            <label className="block text-sm font-medium">Model:</label>
+            <input type="text" name="vehicleModel" value={formData.vehicleModel} onChange={handleChange} required className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          </div>
+          <div>
+            <label className="block text-sm font-medium">Type (Sedan/SUV):</label>
+            <input type="text" name="vehicleType" value={formData.vehicleType} onChange={handleChange} required className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          </div>
+          <div>
+            <label className="block text-sm font-medium">Fuel Type:</label>
+            <input type="text" name="fuelType" value={formData.fuelType} onChange={handleChange} required className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          </div>
+          <div>
+            <label className="block text-sm font-medium">Engine Number:</label>
+            <input type="text" name="engineNumber" value={formData.engineNumber} onChange={handleChange} required className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          </div>
+          <div>
+            <label className="block text-sm font-medium">Chassis Number:</label>
+            <input type="text" name="chassisNumber" value={formData.chassisNumber} onChange={handleChange} required className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          </div>
+      
+          {/* Registration Details */}
+          <h3 className="text-xl font-semibold col-span-full">Registration Details</h3>
+          <div>
+            <label className="block text-sm font-medium">Registration Number:</label>
+            <input type="text" name="registrationNumber" value={formData.registrationNumber} onChange={handleChange} required className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          </div>
+          <div>
+            <label className="block text-sm font-medium">Registration Start Date:</label>
+            <input type="date" name="registrationStartDate" value={formData.registrationStartDate} onChange={handleChange} required className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          </div>
+          <div>
+            <label className="block text-sm font-medium">Registration End Date:</label>
+            <input type="date" name="registrationEndDate" value={formData.registrationEndDate} onChange={handleChange} required className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          </div>
+      
+          <button type="submit" className="col-span-full w-auto px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors">Register</button>
+        </form>
+    </div>
+  </section>
   );
-  
 };
 
 export default VehicleRegistration;

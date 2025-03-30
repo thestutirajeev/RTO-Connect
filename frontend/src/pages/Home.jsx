@@ -22,7 +22,7 @@ const Home = () => {
   return (
     <>
       {/* =============== hero section =============== */}
-        <section className="hero__section pt-[60px] 2xl:h[800px]">
+        <section className="hero__section pt-[60px] 2xl:h[800px]" >
           <div className="container">
             <div className="flex flex-col lg:flex-row gap-[90ps] items-center justify-between">
               {/* ===== hero content ===== */}

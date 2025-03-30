@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-
+import heroBg from "../../assets/images/hero-bg.png";
 const UserHome = () => {
   const [userName, setUserName] = useState("User");
   const navigate = useNavigate();
@@ -23,7 +23,7 @@ const UserHome = () => {
   };
 
   return (
-    <div className="flex flex-col items-center min-h-screen bg-gray-100 p-10">
+    <div className="flex flex-col items-center min-h-screen p-10" style={{ backgroundImage: `url(${heroBg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
   <h1 className="text-4xl font-bold text-blue-600 mb-12 text-center">Welcome, User</h1>
   
   {/* Vehicle Registration */}

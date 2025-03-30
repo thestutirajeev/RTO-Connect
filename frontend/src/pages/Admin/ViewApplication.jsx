@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-
+import heroBg from '../../assets/images/hero-bg.png';
 const ViewApplication = () => {
   // In your component:
   const [expandedAppId, setExpandedAppId] = useState(null);
@@ -65,7 +65,7 @@ const ViewApplication = () => {
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div>
+    <div style={{ backgroundImage: `url(${heroBg})`, backgroundSize: 'cover', backgroundPosition: 'center' }} className="min-h-screen p-10 bg-gradient-to-b from-gray-100 to-gray-300">
     <h2 className="text-3xl font-bold mb-6 text-center">Applications</h2>
     {applications.length === 0 ? (
       <p className="text-gray-500 text-center">No applications found</p>

@@ -31,6 +31,8 @@ const contactRoutes = require("./routes/contactRoutes");
 app.use("/api/contact", contactRoutes);
 const paymentRoutes = require("./routes/payments");
 app.use("/api/payments", paymentRoutes);
+const userRoutes = require("./routes/userRoutes");
+app.use("/api/users", userRoutes);
 
 
 // Start the server

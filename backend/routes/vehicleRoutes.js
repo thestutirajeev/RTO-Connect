@@ -18,14 +18,16 @@ router.post("/registerVehicle", async (req, res) => {
   }
 });
 
-// Get all registered vehicles
-router.get("/", async (req, res) => {
+// Get all registered vehicles for Admin
+router.get("/vehicles", async (req, res) => {
   try {
     const vehicles = await Vehicle.find();
     res.json(vehicles);
   } catch (error) {
-    res.status(500).json({ error: "Failed to fetch vehicles" });
+    console.error("Error fetching vehicles:", error);
+    res.status(500).json({ message: "Internal server error" });
   }
 });
+
 
 module.exports = router;

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import heroBg from '../../assets/images/hero-bg.png';
 
 {/* Uncomment the following lines to enable Stripe payment option 
 import { loadStripe } from "@stripe/stripe-js";
@@ -213,10 +214,11 @@ const ApplicationForm = () => {
   };
   
   return (
+    <section style={{ backgroundImage: `url(${heroBg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
     <div className="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-md">
         <h2 className="text-2xl font-bold text-center text-blue-600 mb-6">Apply for Driving License</h2>
         {error && <p className="text-red-500 mb-4">{error}</p>}
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleRazorpaySubmit} className="space-y-4">
             <div>
             <label className="block text-gray-700 font-medium mb-2">Aadhar Number:</label>
             <input
@@ -286,6 +288,7 @@ const ApplicationForm = () => {
 
         </form>
     </div>
+    </section>
   );
 };
 

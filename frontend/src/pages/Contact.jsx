@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import heroBg from '../assets/images/hero-bg.png';
 
 const Contact = () => {
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ const Contact = () => {
   };
 
   return (
-    <section>
+    <section style={{ backgroundImage: `url(${heroBg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
       <div className="px-4 mx-auto max-w-screen-md">
         <h2 className="heading text-center">Contact Us</h2>
         <p className="mb-8 lg:mb-16 font-light text-center text__para">

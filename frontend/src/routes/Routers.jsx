@@ -6,11 +6,12 @@ import Contact from "../pages/Contact";
 import RTOOfficeList from "../components/RTOOffices/RTOOfficeList";
 import Doctors from "../pages/Doctors/Doctors";
 import DoctorDetails from "../pages/Doctors/DoctorDetails";
-
+import Dashboard from "../pages/Dashboard";
 
 import AdminHome from "../pages/Admin/AdminHome";
 import VehicleList from "../pages/Admin/VehicleList";
 import ViewApplication from "../pages/Admin/ViewApplication";
+import UserList from "../pages/Admin/UserList";
 
 import UserHome from "../pages/User/UserHome";
 import VehicleRegistration from "../pages/User/VehicleRegistration";
@@ -32,10 +33,12 @@ const Routers = () => {
     <Route path="/services" element={<Services />} />
     <Route path="/rto-offices" element={<RTOOfficeList />} />
 
+    <Route path="/dashboard" element={<Dashboard />} />
 
     <Route path="/admin-home" element={<AdminHome />} />
     <Route path="/vehicle-list" element={<VehicleList />} />
     <Route path="/view-applications" element={<ViewApplication />} />
+    <Route path="/user-list" element={<UserList />} />
 
     <Route path="/user-home" element={<UserHome />} />
     <Route path="/register-vehicle" element={<VehicleRegistration />} />
