@@ -3,6 +3,43 @@ const router = express.Router();
 const Application = require("../models/Application");
 const User = require("../models/User");
 const authMiddleware = require("../middleware/authMiddleware");// Middleware for authentication
+const DLTestResult = require("../models/DLTestResult"); // Import the DLTestResult model
+//Index of Routes in this page
+// 1. DL Test Result Submission by User
+// 2. Submit Driving License Application by User
+// 3. Fetch all applications with user details for Admin
+// 4. Approve or Reject application by Admin
+
+//DL Test Result Submission by User
+router.post("/savetestresult", authMiddleware, async (req, res) => {
+  try {
+    console.log("Request received:", req.body);
+
+    const { scorePercentage } = req.body;
+    if (scorePercentage === undefined) {
+      return res.status(400).json({ message: "Missing scorePercentage" });
+    }
+
+    if (scorePercentage < 60) {
+      return res.status(200).json({ message: "Test failed. Not stored in DB." });
+    }
+
+    const testResult = new DLTestResult({
+      userId: req.user.id,
+      scorePercentage,
+      timestamp: new Date(),
+    });
+
+    await testResult.save();
+    console.log("Test result saved in DB:", testResult);
+    return res.status(201).json({ message: "Test result saved successfully", testResult });
+
+  } catch (error) {
+    console.error("Server error:", error);
+    return res.status(500).json({ message: "Internal server error", error: error.toString() });
+  }
+});
+
 
 //For User
 // Submit Driving License Application
