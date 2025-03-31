@@ -5,6 +5,23 @@ const router = express.Router();
 require("dotenv").config();
 
 const Stripe = require("stripe");
+//Stripe Payment Integration
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+// Create Payment Intent for Stripe
+router.post("/create-payment-intent", async (req, res) => {
+  try {
+    const { amount, currency } = req.body;
+    const paymentIntent = await stripe.paymentIntents.create({
+      amount,
+      currency,
+    });
+
+    res.json({ clientSecret: paymentIntent.client_secret });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 
 const razorpay = new Razorpay({
   key_id: process.env.RAZORPAY_KEY_ID, // Replace with your Razorpay Key ID
@@ -42,26 +59,6 @@ router.post("/verify-payment", async (req, res) => {
     res.json({ message: "Payment verified successfully" });
   } else {
     res.status(400).json({ message: "Payment verification failed" });
-  }
-});
-
-
-//Stripe Payment Integration
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
-
-// Create Payment Intent for Stripe
-// Replace "your_publishable_key" in loadStripe() with your Stripe Publishable Key (from Stripe Dashboard).
-router.post("/create-payment-intent", async (req, res) => {
-  try {
-    const { amount, currency } = req.body;
-    const paymentIntent = await stripe.paymentIntents.create({
-      amount,
-      currency,
-    });
-
-    res.json({ clientSecret: paymentIntent.client_secret });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
   }
 });
 

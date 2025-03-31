@@ -18,9 +18,10 @@ const Login = () => {
     try {
       //Calling the login function from authService
       const res = await login(formData);
-      //console.log(res); //Debugging
 
       localStorage.setItem("token", res.token);
+      localStorage.setItem("userId", res.user._id);
+      console.log("User ID:", res.user._id); // Debugging line
       localStorage.setItem("role", res.user.role);
       localStorage.setItem("email", res.user.email);
       localStorage.setItem("name", res.user.name);

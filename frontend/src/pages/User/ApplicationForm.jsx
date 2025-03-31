@@ -2,15 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import heroBg from '../../assets/images/hero-bg.png';
 
-{/* Uncomment the following lines to enable Stripe payment option 
-import { loadStripe } from "@stripe/stripe-js";
-import { Elements, useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
-// Load Stripe with your publishable key
-const stripePromise = loadStripe("your_publishable_key");
-*/}
-
 const ApplicationForm = () => {
-  const [testDate, setTestDate] = useState("");
+    const [testDate, setTestDate] = useState("");
   const [aadharNumber, setAadharNumber] = useState("");
   const [dob, setDob] = useState("");
   const [bloodGroup, setBloodGroup] = useState("");
@@ -114,68 +107,6 @@ const ApplicationForm = () => {
       setError("Payment initiation failed.");
     }
   };
-
-  const handleStripeSubmit = async (e) => {
-    e.preventDefault();
-    setError(null);
-
-    if (!testDate || !aadharNumber || !dob || !bloodGroup) {
-      setError("All fields are required");
-      return;
-    }
-
-    try {
-      const token = localStorage.getItem("token");
-      if (!token) {
-        setError("You must be logged in to apply.");
-        return;
-      }
-
-      // Step 1: Create Stripe Payment Intent
-      const res = await fetch("http://localhost:5000/api/payments/create-payment-intent", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ amount: 5000, currency: "INR" }), // ₹50
-      });
-
-      const { clientSecret } = await res.json();
-
-      // Step 2: Confirm Card Payment
-      const result = await stripe.confirmCardPayment(clientSecret, {
-        payment_method: {
-          card: elements.getElement(CardElement),
-        },
-      });
-
-      if (result.error) {
-        setError(result.error.message);
-        return;
-      } else if (result.paymentIntent.status === "succeeded") {
-        alert("Payment successful!");
-
-        // Step 3: Submit Application Form
-        const response = await fetch("http://localhost:5000/api/applications/apply", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: token,
-          },
-          body: JSON.stringify({ testDate, aadharNumber, dob, bloodGroup }),
-        });
-
-        const data = await response.json();
-        if (response.ok) {
-          alert("Application submitted successfully!");
-          navigate("/user-home");
-        } else {
-          setError(data.message);
-        }
-      }
-    } catch (error) {
-      setError("Payment failed. Please try again.");
-    }
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(null);
@@ -212,13 +143,12 @@ const ApplicationForm = () => {
       setError("Error submitting application. Please try again.");
     }
   };
-  
   return (
     <section style={{ backgroundImage: `url(${heroBg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
     <div className="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-md">
         <h2 className="text-2xl font-bold text-center text-blue-600 mb-6">Apply for Driving License</h2>
         {error && <p className="text-red-500 mb-4">{error}</p>}
-        <form onSubmit={handleRazorpaySubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4">
             <div>
             <label className="block text-gray-700 font-medium mb-2">Aadhar Number:</label>
             <input
@@ -280,12 +210,6 @@ const ApplicationForm = () => {
             >
             Submit Application
             </button>
-            {/* Uncomment the following lines to enable Stripe payment option 
-              <CardElement />
-              <button type="submit" disabled={!stripe}>Pay & Apply</button>
-              {error && <p style={{ color: "red" }}>{error}</p>}
-            */}
-
         </form>
     </div>
     </section>
@@ -293,12 +217,3 @@ const ApplicationForm = () => {
 };
 
 export default ApplicationForm;
-{/* Uncomment the following lines to enable Stripe payment option 
-export default function ApplicationFormWrapper() {
-  return (
-    <Elements stripe={stripePromise}>
-      <ApplicationForm />
-    </Elements>
-  );
-}
-  */}

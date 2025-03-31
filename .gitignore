@@ -4824,3 +4824,4 @@ backend/node_modules/razorpay/dist/utils/razorpay-utils.js
 backend/.env
 backend/.env
 backend/.env
+frontend/.env

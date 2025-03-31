@@ -7,8 +7,9 @@ const DLTestResult = require("../models/DLTestResult"); // Import the DLTestResu
 //Index of Routes in this page
 // 1. DL Test Result Submission by User
 // 2. Submit Driving License Application by User
-// 3. Fetch all applications with user details for Admin
-// 4. Approve or Reject application by Admin
+// 3. Fetch all applications for the logged-in user
+// 4. Fetch all applications with user details for Admin
+// 5. Approve or Reject application by Admin
 
 //DL Test Result Submission by User
 router.post("/savetestresult", authMiddleware, async (req, res) => {
@@ -66,7 +67,21 @@ router.post("/apply", authMiddleware, async (req, res) => {
       res.status(500).json({ message: "Error submitting application", error });
     }
 });
-  
+ 
+//For User
+// Fetch all applications for the logged-in user
+router.get("/myapplications/:userId", async (req, res) => {
+  try {
+    const { userId } = req.params; // Get userId from URL params
+    const applications = await Application.find({ userId })
+      .sort({ applicationDate: -1 }) // Newest first
+      .select("applicationDate testDate status aadharNumber bloodGroup");
+
+    res.status(200).json(applications);
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching applications", error });
+  }
+});
 
 //For Admin
 // Get all applications with user details

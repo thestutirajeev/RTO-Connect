@@ -36,9 +36,9 @@ export const services = [
   },
   {
     name: "Status Tracking",
-    desc: "Get real-time updates on applications, licenses, and registrations.",
+    desc: "Get real-time updates on DL applications.",
     bgColor: "rgba(151, 113, 255, .2)",
     textColor: "#9771FF",
-    path: "/register-vehicle",
+    path: "/application-status",
   },
 ];

@@ -10,6 +10,5 @@ const applicationSchema = new mongoose.Schema({
   bloodGroup: { type: String, required: true, enum: ["A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"] } // Blood Group
 });
 
-const Application = mongoose.model("Application", applicationSchema);
-
+const Application = mongoose.model("Application", applicationSchema); 
 module.exports = Application;
