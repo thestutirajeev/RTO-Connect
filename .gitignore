@@ -1,14 +1,3 @@
-frontend/src/assets/images/adminDashImage/approvalRequest.png
-frontend/src/assets/images/adminDashImage/fitnessCheck.png
-frontend/src/assets/images/adminDashImage/manageVehicle.png
-frontend/src/assets/images/adminDashImage/reports.png
-frontend/src/assets/images/adminDashImage/settings.png
-frontend/src/assets/images/adminDashImage/userManagement.png
-frontend/src/assets/images/vehicleListImage/creta.png
-frontend/src/assets/images/vehicleListImage/fortuner.png
-frontend/src/assets/images/vehicleListImage/hondacity.png
-frontend/src/assets/images/vehicleListImage/swift.png
-frontend/src/assets/images/vehicleListImage/thar.png
 backend/node_modules/.package-lock.json
 backend/node_modules/.bin/bcrypt
 backend/node_modules/.bin/bcrypt.cmd
