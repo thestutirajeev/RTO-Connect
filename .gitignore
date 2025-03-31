@@ -4821,3 +4821,5 @@ backend/node_modules/razorpay/dist/utils/nodeify.js
 backend/node_modules/razorpay/dist/utils/predefined-tests.js
 backend/node_modules/razorpay/dist/utils/razorpay-utils.d.ts
 backend/node_modules/razorpay/dist/utils/razorpay-utils.js
+backend/.env
+frontend/.env
