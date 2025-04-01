@@ -17,7 +17,7 @@ import UserHome from "../pages/User/UserHome";
 import VehicleRegistration from "../pages/User/VehicleRegistration";
 import FitnessCheck from "../pages/User/FitnessCheck";
 import DLTest from "../pages/User/DLTest";
-import ApplicationFormWrapper from "../pages/User/ApplicationFormWrapper";
+import ApplicationForm from "../pages/User/ApplicationForm";
 import ApplicationStatus from "../pages/User/ApplicationStatus";
 
 import { Routes, Route } from 'react-router-dom';
@@ -45,7 +45,7 @@ const Routers = () => {
     <Route path="/register-vehicle" element={<VehicleRegistration />} />
     <Route path="/fitness-check" element={<FitnessCheck />} />
     <Route path="/dl-test" element={<DLTest />} />
-    <Route path="/apply-dllicense" element={<ApplicationFormWrapper />} />
+    <Route path="/apply-dllicense" element={<ApplicationForm />} />
     <Route path="/application-status" element={<ApplicationStatus />} />
   </Routes>   
 };

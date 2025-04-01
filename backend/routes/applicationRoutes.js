@@ -3,7 +3,6 @@ const router = express.Router();
 const Application = require("../models/Application");
 const User = require("../models/User");
 const authMiddleware = require("../middleware/authMiddleware");// Middleware for authentication
-const DLTestResult = require("../models/DLTestResult"); // Import the DLTestResult model
 //Index of Routes in this page
 // 1. DL Test Result Submission by User
 // 2. Submit Driving License Application by User
@@ -14,8 +13,6 @@ const DLTestResult = require("../models/DLTestResult"); // Import the DLTestResu
 //DL Test Result Submission by User
 router.post("/savetestresult", authMiddleware, async (req, res) => {
   try {
-    console.log("Request received:", req.body);
-
     const { scorePercentage } = req.body;
     if (scorePercentage === undefined) {
       return res.status(400).json({ message: "Missing scorePercentage" });
@@ -25,22 +22,28 @@ router.post("/savetestresult", authMiddleware, async (req, res) => {
       return res.status(200).json({ message: "Test failed. Not stored in DB." });
     }
 
-    const testResult = new DLTestResult({
-      userId: req.user.id,
-      scorePercentage,
-      timestamp: new Date(),
-    });
+    // Update the User schema with the latest test result
+    const updatedUser = await User.findByIdAndUpdate(
+      req.user.id,
+      {
+        dlTestResult: {
+          scorePercentage,
+          timestamp: new Date(),
+        },
+      },
+      { new: true }
+    );
 
-    await testResult.save();
-    console.log("Test result saved in DB:", testResult);
-    return res.status(201).json({ message: "Test result saved successfully", testResult });
+    return res.status(201).json({
+      message: "Test result saved successfully",
+      dlTestResult: updatedUser.dlTestResult,
+    });
 
   } catch (error) {
     console.error("Server error:", error);
     return res.status(500).json({ message: "Internal server error", error: error.toString() });
   }
 });
-
 
 //For User
 // Submit Driving License Application
@@ -67,7 +70,52 @@ router.post("/apply", authMiddleware, async (req, res) => {
       res.status(500).json({ message: "Error submitting application", error });
     }
 });
- 
+
+//For User
+// Route: Check if user has given the test in the last 24 hours and if they have a pending application
+router.get("/check-test-status", authMiddleware, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // If no test result exists
+    if (!user.dlTestResult || !user.dlTestResult.timestamp) {
+      return res.status(403).json({ message: "You need to give the license test first before applying." });
+    }
+
+    // Check if the test was given in the last 24 hours
+    const lastTestTime = new Date(user.dlTestResult.timestamp);
+    const currentTime = new Date();
+    const hoursDifference = (currentTime - lastTestTime) / (1000 * 60 * 60); // Convert to hours
+
+    if (hoursDifference > 24) {
+      return res.status(403).json({
+        message: "Your last test was more than 24 hours ago. Please take the test again before applying."
+      });
+    }
+
+    // Check if the user already has a "Pending" application
+    const existingApplication = await Application.findOne({
+      userId: req.user.id,
+      status: "Pending",
+    });
+
+    if (existingApplication) {
+      return res.status(403).json({
+        message: "You already have a pending application. Check your status on the Status page."
+      });
+    }
+
+    return res.status(200).json({ message: "Test was taken within 24 hours. Application is allowed." });
+
+  } catch (error) {
+    console.error("Error checking test status:", error);
+    return res.status(500).json({ message: "Internal server error" });
+  }
+});
+
 //For User
 // Fetch all applications for the logged-in user
 router.get("/myapplications/:userId", async (req, res) => {
