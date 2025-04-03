@@ -182,7 +182,7 @@ const ApplicationForm = () => {
         }
       );
 
-      const data = await respo nse.json();
+      const data = await respocnse.json();
       if (response.ok) {
         alert("Application submitted successfully!");
         navigate("/user-home");
