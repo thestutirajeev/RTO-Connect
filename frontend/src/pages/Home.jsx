@@ -16,9 +16,19 @@ import About from '../components/About/About';
 import ServiceList from '../components/Services/ServiceList';
 import RTOOfficeList from '../components/RTOOffices/RTOOfficeList';
 import FaqList from '../components/Faq/FaqList';
-import Testimonial from '../components/Testimonial/Testimonial';
+import Reviews from "../components/Feedbacks/Reviews";
+
+import { useEffect } from "react";
 
 const Home = () => {
+  useEffect(() => {
+    if (location.hash) {
+      const element = document.getElementById(location.hash.substring(1));
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, [location]);
   return (
     <>
       {/* =============== hero section =============== */}
@@ -36,7 +46,7 @@ const Home = () => {
                     From vehicle registrations and driving license applications to permit management and compliance
                     tracking, our app makes everything faster, easier, and more efficient.
                   </p>
-                  <Link to='/apply-dllicense'>
+                  <Link to='/apply-license'>
                     <button className='btn' >Apply Driving Licence</button>
                   </Link>
                 </div>
@@ -102,12 +112,12 @@ const Home = () => {
               </div>
             <div className="mt-[30px]">
               <h2 className="text-[26px] leading-9 text-headingColor font-[700] text-center">
-                Select a Service
+                Give Us a Feeback
               </h2>
               <p className="text-[16px] leadinf-7 text-textColor font-[400] mt-4 text-center">
-                Choose from a range of RTO services, from license applications to vehicle registration.
+                You can share your valuable feedback with us to help us improve our services.
               </p>
-                <Link to='/services' className='w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E] mt-[30px] mx-auto flex items-center justify-center group hover:bg-primaryColor hover:border-none'>
+                <Link to='/feedback' className='w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E] mt-[30px] mx-auto flex items-center justify-center group hover:bg-primaryColor hover:border-none'>
                 <BsArrowRight className=' group-hover:text-white w-6 h-5' />
               </Link>
             
@@ -143,7 +153,7 @@ const Home = () => {
               <p className="text-[16px] leadinf-7 text-textColor font-[400] mt-4 text-center">
                 Easily schedule your RTO visit at your convenience, avoiding long wait times.
               </p>
-                <Link to='/apply-dllicense' className='w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E] mt-[30px] mx-auto flex items-center justify-center group hover:bg-primaryColor hover:border-none'>
+                <Link to='/apply-license' className='w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E] mt-[30px] mx-auto flex items-center justify-center group hover:bg-primaryColor hover:border-none'>
                   <BsArrowRight className=' group-hover:text-white w-6 h-5' />
                 </Link>
               </div>
@@ -257,19 +267,19 @@ const Home = () => {
       </section>
       {/* =============== FAQ Section End =============== */}
 
-      {/* =============== Testimonial =============== */}
+      {/* =============== Reviews =============== */}
       <section>
-        <div className='container'>
+        <div className='container' id='reviews'>
           <div className='xl:w-[470px] mx-auto'>
             <h2 className='heading text-center'>What Our Users Say</h2>
             <p className='text__para text-center'>
               Seamless RTO services at your fingertips. Experience hassle-free, efficient, and reliable vehicle-related solutions.
             </p>
           </div>
-          <Testimonial/>
+          <Reviews/>
         </div>
       </section>
-      {/* =============== Testimonial End =============== */}
+      {/* =============== Reviews End =============== */}
     </>
 
   );

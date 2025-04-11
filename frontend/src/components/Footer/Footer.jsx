@@ -31,22 +31,22 @@ const quickLinks01 = [
     display: "Home",
   },
   {
-    path: "/services",
-    display: "About RTO Connect",
+    path: "/home#reviews",
+    display: "Reviews & Ratings",
   },
   {
     path: "/services",
     display: "Our Services",
   },
   {
-    path: "/contact",
-    display: "News & Updates",
+    path: "/feedback",
+    display: "Feedback",
   },
 ];
 
 const quickLinks02 = [
   {
-    path: "/apply-dllicense",
+    path: "/apply-license",
     display: "Apply for a License",
   },
   {
@@ -54,18 +54,18 @@ const quickLinks02 = [
     display: "Vehicle Registration",
   },
   {
-    path: "/apply-dllicense",
+    path: "/apply-license",
     display: "Book an Appointment",
   },
   {
-    path: "/apply-dllicense",
+    path: "/application-status",
     display: "Track Application Status",
   },
 ];
 
 const quickLinks03 = [
   {
-    path: "/home",
+    path: "/home#faqs",
     display: "FAQs",
   },
   {
@@ -95,7 +95,6 @@ export const Footer = () => {
                   to={link.path} 
                   key={index}
                   className="w-9 h-9 border border-solid border-[#181A1E] rounded-full flex items-center justify-center group hover:bg-primaryColor hover:border-none"
-                  target="_blank"
                   >
                   {link.icon}
                 </Link>

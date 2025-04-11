@@ -4,7 +4,7 @@ export const services = [
     desc: "Apply for new licenses, renewals, and duplicates.",
     bgColor: "rgba(254, 182, 13, .2)",
     textColor: "#FEB60D",
-    path: "/apply-dllicense",
+    path: "/apply-license",
   },
   {
     name: "Vehicle Registration",
@@ -25,7 +25,7 @@ export const services = [
     desc: "Schedule RTO visits for tests, verifications, and inquiries.",
     bgColor: "rgba(1, 181, 197, .2)",
     textColor: "#01B5C5",
-    path: "/apply-dllicense",
+    path: "/apply-license",
   },
   {
     name: "Permit Applications",
