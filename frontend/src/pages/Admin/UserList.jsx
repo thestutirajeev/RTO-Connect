@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import heroBg from "../../assets/images/hero-bg.png";
 
 const UserList = () => {
   const navigate = useNavigate();
@@ -66,7 +67,11 @@ const UserList = () => {
   });
 
   return (
-    <div className="p-6">
+    <div className="p-6" style={{
+      backgroundImage: `url(${heroBg})`,
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+    }}>
       <h2 className="text-2xl font-bold mb-4">Users</h2>
 
       {/* 🔍 Search Bar */}

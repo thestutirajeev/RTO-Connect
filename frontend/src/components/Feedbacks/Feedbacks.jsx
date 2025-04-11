@@ -5,7 +5,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import userAvatar from '../../assets/images/user-avatar.png';
 import { HiStar } from 'react-icons/hi';
-
+//To Display On Home Page
 const Reviews = () => {
   const [feedbacks, setFeedbacks] = useState([]);
 

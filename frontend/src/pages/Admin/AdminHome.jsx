@@ -1,89 +1,127 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { BsArrowRight } from "react-icons/bs";
+
 import manageVehicle from "../../assets/images/adminDashImage/manageVehicle.png";
 import fitnessCheck from "../../assets/images/adminDashImage/fitnessCheck.png";
 import userManagement from "../../assets/images/adminDashImage/userManagement.png";
 import approvalRequest from "../../assets/images/adminDashImage/approvalRequest.png";
 import reports from "../../assets/images/adminDashImage/reports.png";
 import settings from "../../assets/images/adminDashImage/settings.png";
-import heroBg from '../../assets/images/hero-bg.png';
+import heroBg from "../../assets/images/hero-bg.png";
 
 const AdminHome = () => {
-    const navigate = useNavigate();
-    const sections = [
-        {
-            title: "Manage Vehicles",
-            description: "Add, edit, or remove vehicle records from the system.",
-            image: manageVehicle, 
-            buttonText: "Manage Now",
-            path: "/vehicle-list",
-        },
-        {
-            title: "Check Fitness Certificates",
-            description: "Review and approve vehicle fitness certificates.",
-            image: fitnessCheck,
-            buttonText: "Check Now",
-            path: "/admin-home",
-        },
-        {
-            title: "User Management",
-            description: "View, add, or remove users and their permissions.",
-            image: userManagement,
-            buttonText: "Manage Users",
-            path: "/user-list",
-        },
-        {
-            title: "Approval Requests", 
-            description: "Approve or reject pending requests from users.",
-            image: approvalRequest,
-            buttonText: "View Requests",
-            path: "/view-applications",
-        },
-        {
-            title: "Reports & Analytics",
-            description: "Generate and view detailed reports on vehicle data.",
-            image: reports,
-            buttonText: "View Reports",
-            path: "/admin-home",
-        },
-        {
-            title: "System Settings",
-            description: "Configure system settings and preferences.",
-            image: settings,
-            buttonText: "Configure",
-            path: "/admin-home",
-        },
-    ];
+  const navigate = useNavigate();
 
-    return (
-        <div className="min-h-screen bg-gradient-to-b from-gray-100 to-gray-300 p-8" style={{ backgroundImage: `url(${heroBg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
-            <h1 className="text-4xl font-extrabold text-center text-gray-900 mb-10">Admin Dashboard</h1>
+  const sections = 
+  [
+    {
+      title: "Manage Vehicles",
+      description: "Add, edit, or remove vehicle records from the system.",
+      image: manageVehicle,
+      path: "/vehicle-list",
+      color: "green",
+    },
+    {
+      title: "Read Feedbacks and Reviews",
+      description: "View to user feedback, reviews, ratings and suggestions.",
+      image: fitnessCheck,
+      path: "/feedback-list",
+      color: "blue",
+    },
+    {
+      title: "User Management",
+      description: "View, add, or remove users and their permissions.",
+      image: userManagement,
+      path: "/user-list",
+      color: "green",
+    },
+    {
+      title: "Approval Requests",
+      description: "Approve or reject pending requests from users.",
+      image: approvalRequest,
+      path: "/view-applications",
+      color: "blue",
+    },
+    {
+      title: "Respond Contacted Queries",
+      description: "Respond to user queries and provide assistance.",
+      image: reports,
+      path: "/contacts-list",
+      color: "green",
+    },
+    {
+      title: "System Settings",
+      description: "Configure system settings and preferences.",
+      image: settings,
+      path: "/admin-home",
+      color: "blue",
+    },
+  ];
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {sections.map((section, index) => (
-                    <div 
-                        key={index} 
-                        className="bg-white shadow-lg rounded-2xl overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-2xl"
-                    >
-                        <img 
-                            src={section.image} 
-                            alt={section.title} 
-                            className="w-full h-48 object-cover"
-                        />
-                        <div className="p-6 text-center">
-                            <h2 className="text-2xl font-semibold text-gray-800">{section.title}</h2>
-                            <p className="text-gray-600 mt-2">{section.description}</p>
-                            <button 
-                              className="mt-4 px-6 py-3 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition duration-300 shadow-md"
-                              onClick={() => navigate(section.path)} >                            
-                                {section.buttonText}
-                            </button>
-                        </div>
-                    </div>
-                ))}
+  return (
+    <div
+      className="min-h-screen p-6 md:p-10"
+      style={{
+        backgroundImage: `url(${heroBg})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
+      <div className="bg-white bg-opacity-80 backdrop-blur-md p-6 md:p-10 rounded-lg shadow-md"
+        style={{
+            backgroundImage: `url(${heroBg})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}>
+        <h1 className="text-3xl md:text-4xl font-bold text-center text-blue-700 mb-10">
+          Admin Dashboard
+        </h1>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {sections.map((section, idx) => (
+            <div
+              key={idx}
+              className="group flex bg-white border border-gray-200 shadow-lg rounded-lg overflow-hidden transition-all duration-300 hover:bg-blue-50 hover:shadow-xl cursor-pointer"
+              onClick={() => navigate(section.path)}
+            >
+              {/* Image on the left */}
+              <div className="w-40 sm:w-44 md:w-48 bg-gray-100 overflow-hidden flex items-center justify-center">
+                <img
+                  src={section.image}
+                  alt={section.title}
+                  className="w-full h-full object-contain p-4"
+                />
+              </div>
+
+              {/* Text Content */}
+              <div className="flex-1 flex flex-col justify-between p-6">
+                <div>
+                  <h2
+                    className={`text-xl font-semibold text-${section.color}-600 mb-2`}
+                  >
+                    {section.title}
+                  </h2>
+                  <p className="text-gray-700 text-[15px]">
+                    {section.description}
+                  </p>
+                </div>
+
+                {/* Proceed Arrow */}
+                <div className="mt-6 flex items-center justify-end">
+                  <span
+                    className={`flex items-center gap-2 text-${section.color}-600 group-hover:text-white bg-${section.color}-100 group-hover:bg-${section.color}-600 px-4 py-2 rounded-md transition-all duration-300 font-medium`}
+                  >
+                    Proceed <BsArrowRight className="w-5 h-5" />
+                  </span>
+                </div>
+              </div>
             </div>
+          ))}
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default AdminHome;

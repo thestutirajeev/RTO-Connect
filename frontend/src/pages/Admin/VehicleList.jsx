@@ -7,7 +7,7 @@ const VehicleList = () => {
   const [filterExpired, setFilterExpired] = useState(false);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/vehicles")
+    fetch("http://localhost:5000/api/vehicles/vehicles")
       .then((res) => res.json())
       .then((data) => setVehicles(data))
       .catch((error) => console.error("Error fetching vehicles:", error));

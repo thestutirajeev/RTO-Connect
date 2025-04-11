@@ -35,7 +35,7 @@ const quickLinks01 = [
     display: "Reviews & Ratings",
   },
   {
-    path: "/services",
+    path: "/home#service",
     display: "Our Services",
   },
   {

@@ -12,20 +12,16 @@ const navLinks = [
     display: 'Home'
   },
   {
+    path:'/dashboard',
+    display: 'Dashboard'
+  },
+  {
     path:'/apply-dllicense',
     display: 'Apply for DL'
   },
   {
-    path:'/services',
-    display: 'Services'
-  },
-  {
     path:'/contact',
     display: 'Contact'
-  },
-  {
-    path:'/dashboard',
-    display: 'Dashboard'
   },
 ];
 

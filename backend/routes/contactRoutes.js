@@ -24,6 +24,19 @@ router.post("/contact", async (req, res) => {
   }
 });
 
+// Route to get all contact queries (admin use)
+router.get("/contacts", async (req, res) => {
+  try {
+    const queries = await Contact.find()
+      .sort({ createdAt: -1 });
+    res.json(queries);
+  } catch (error) {
+    res.status(500).json({ message: "Server Error", error });
+  }
+});
+
+module.exports = router;
+
 
 // Feedback submission route for authenticated users
 router.post("/feedback", verifyToken, async (req, res) => {
@@ -54,9 +67,9 @@ router.get("/displayfeedbacks", async (req, res) => {
     const transformed = feedbacks.map(fb => ({
       name: fb.userId?.name || "Anonymous",
       rating: fb.noOfStars,
-      comment: fb.feedback
+      comment: fb.feedback,
     }));
-
+    
     res.json(transformed);
   } catch (error) {
     res.status(500).json({ message: "Server Error", error });
