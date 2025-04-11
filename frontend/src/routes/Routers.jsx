@@ -4,8 +4,6 @@ import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import Contact from "../pages/Contact";
 import RTOOfficeList from "../components/RTOOffices/RTOOfficeList";
-import Doctors from "../pages/Doctors/Doctors";
-import DoctorDetails from "../pages/Doctors/DoctorDetails";
 import Dashboard from "../pages/Dashboard";
 
 import AdminHome from "../pages/Admin/AdminHome";
@@ -19,6 +17,7 @@ import FitnessCheck from "../pages/User/FitnessCheck";
 import DLTest from "../pages/User/DLTest";
 import ApplicationForm from "../pages/User/ApplicationForm";
 import ApplicationStatus from "../pages/User/ApplicationStatus";
+import Feedback from "../pages/User/FeedbackForm";
 
 import { Routes, Route } from 'react-router-dom';
 
@@ -26,8 +25,6 @@ const Routers = () => {
   return <Routes>
     <Route path="/" element={<Home />} />
     <Route path="/home" element={<Home />} />
-    <Route path="/apply-license" element={<Doctors />} />
-    <Route path="/doctors/:id" element={<DoctorDetails />} />
     <Route path="/login" element={<Login />} />
     <Route path="/register" element={<Signup />} />
     <Route path="/contact" element={<Contact />} />
@@ -45,8 +42,9 @@ const Routers = () => {
     <Route path="/register-vehicle" element={<VehicleRegistration />} />
     <Route path="/fitness-check" element={<FitnessCheck />} />
     <Route path="/dl-test" element={<DLTest />} />
-    <Route path="/apply-dllicense" element={<ApplicationForm />} />
+    <Route path="/apply-license" element={<ApplicationForm />} />
     <Route path="/application-status" element={<ApplicationStatus />} />
+    <Route path="/feedback" element={<Feedback />} />
   </Routes>   
 };
 
