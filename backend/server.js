@@ -33,6 +33,8 @@ const paymentRoutes = require("./routes/payments");
 app.use("/api/payments", paymentRoutes);
 const userRoutes = require("./routes/userRoutes");
 app.use("/api/users", userRoutes);
+const statsRoutes = require("./routes/statsRoutes");
+app.use("/api/stats", statsRoutes);
 
 
 // Start the server

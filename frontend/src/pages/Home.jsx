@@ -200,7 +200,7 @@ const Home = () => {
                     3. Track Your Status – Get real-time updates on your applications and approvals.
                   </li>
                 </ul>
-                <Link to="#service">
+                <Link to="/home#service">
                   <button className='btn'>Learn More</button>
                 </Link>
               </div>
