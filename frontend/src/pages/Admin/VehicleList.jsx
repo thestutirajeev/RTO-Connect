@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import heroBg from '../../assets/images/hero-bg.png';
 
 const VehicleList = () => {
   const [vehicles, setVehicles] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [filterExpired, setFilterExpired] = useState(false);
+  const [expandedVehicleId, setExpandedVehicleId] = useState(null);
 
   useEffect(() => {
     fetch("http://localhost:5000/api/vehicles/vehicles")
@@ -15,15 +15,14 @@ const VehicleList = () => {
 
   const today = new Date();
 
-  // 🔍 Filter logic
-  const filteredVehicles = vehicles.filter((vehicle) => {
-    // Convert registrationEndDate to Date object
-    const regEndDate = new Date(vehicle.registrationEndDate);
+  const toggleExpand = (id) => {
+    setExpandedVehicleId(prev => (prev === id ? null : id));
+  };
 
-    // If filtering expired vehicles
+  const filteredVehicles = vehicles.filter((vehicle) => {
+    const regEndDate = new Date(vehicle.registrationEndDate);
     if (filterExpired && regEndDate >= today) return false;
 
-    // Match search term with any attribute
     return Object.values(vehicle)
       .join(" ")
       .toLowerCase()
@@ -31,58 +30,61 @@ const VehicleList = () => {
   });
 
   return (
-    <div className="p-6" style={{ backgroundImage: `url(${heroBg})`, backgroundSize: 'cover', minHeight: '100vh' }}>
-      <h2 className="text-2xl font-bold mb-4">Vehicle List</h2>
-
-      {/* 🔍 Search Bar */}
+    <div className="p-2 text-sm">
+      {/* 🔍 Search */}
       <input
         type="text"
-        placeholder="Search by any attribute..."
-        className="border p-2 mb-4 w-full"
+        placeholder="Search..."
+        className="border p-1 w-full mb-2 text-xs"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
 
-      {/* 🚦 Filter Buttons */}
-      <div className="mb-4">
-        <button
-          onClick={() => setFilterExpired(!filterExpired)}
-          className={`px-4 py-2 rounded ${filterExpired ? "bg-red-600 text-white" : "bg-gray-300"}`}
-        >
-          {filterExpired ? "Show All Vehicles" : "Show Expired Registrations"}
-        </button>
-      </div>
+      {/* 🔘 Filter */}
+      <button
+        onClick={() => setFilterExpired(!filterExpired)}
+        className={`px-2 py-1 rounded text-xs mb-2 ${filterExpired ? "bg-red-500 text-white" : "bg-gray-200"}`}
+      >
+        {filterExpired ? "Show All" : "Show Expired"}
+      </button>
 
-      {/* 🚗 Vehicle Table */}
-      <div className="overflow-x-auto">
-        <table className="w-full border-collapse border border-gray-300">
-          <thead>
-            <tr className="bg-gray-200">
-              <th className="border p-2">Owner</th>
-              <th className="border p-2">Email</th>
-              <th className="border p-2">Vehicle</th>
-              <th className="border p-2">Type</th>
-              <th className="border p-2">Fuel</th>
-              <th className="border p-2">Reg. Number</th>
-              <th className="border p-2">Reg. End Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredVehicles.map((vehicle) => (
-              <tr key={vehicle._id} className="hover:bg-gray-100">
-                <td className="border p-2">{vehicle.ownerName}</td>
-                <td className="border p-2">{vehicle.ownerEmail}</td>
-                <td className="border p-2">{vehicle.vehicleManufacturer} {vehicle.vehicleModel}</td>
-                <td className="border p-2">{vehicle.vehicleType}</td>
-                <td className="border p-2">{vehicle.fuelType}</td>
-                <td className="border p-2">{vehicle.registrationNumber}</td>
-                <td className={`border p-2 ${new Date(vehicle.registrationEndDate) < today ? "text-red-600" : ""}`}>
-                  {new Date(vehicle.registrationEndDate).toLocaleDateString()}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      {/* 🚗 Vehicle List */}
+      <div className="space-y-2 max-h-[320px] overflow-y-auto no-scrollbar">
+        {filteredVehicles.map((vehicle) => {
+          const isExpired = new Date(vehicle.registrationEndDate) < today;
+          const isExpanded = expandedVehicleId === vehicle._id;
+
+          return (
+            <div key={vehicle._id} className="border rounded bg-white shadow-sm text-xs">
+              <div
+                className="flex justify-between items-start p-2 cursor-pointer bg-gray-100"
+                onClick={() => toggleExpand(vehicle._id)}
+              >
+<div className="flex flex-wrap gap-x-4 text-xs">
+  <p><b>Reg. No:</b> {vehicle.registrationNumber}</p>
+  <p><b>Vehicle:</b> {vehicle.vehicleManufacturer} {vehicle.vehicleModel}</p>
+  <p>
+    <b>End Date:</b>{" "}
+    <span className={isExpired ? "text-red-500" : "text-green-600"}>
+      {new Date(vehicle.registrationEndDate).toLocaleDateString()}
+    </span>
+  </p>
+</div>
+
+                <span className="ml-2">{isExpanded ? "▲" : "▼"}</span>
+              </div>
+
+              {isExpanded && (
+                <div className="px-2 pb-2">
+                  <p><b>Owner:</b> {vehicle.ownerName}</p>
+                  <p><b>Email:</b> {vehicle.ownerEmail}</p>
+                  <p><b>Type:</b> {vehicle.vehicleType}</p>
+                  <p><b>Fuel:</b> {vehicle.fuelType}</p>
+                </div>
+              )}
+            </div>
+          );
+        })}
       </div>
     </div>
   );

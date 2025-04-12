@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { FiArrowRight } from "react-icons/fi";
-import heroBg from "../../assets/images/hero-bg.png";
-
 
 const ContactedQueriesList = () => {
   const [queries, setQueries] = useState([]);
+  const [expandedQueryIds, setExpandedQueryIds] = useState([]);
 
   useEffect(() => {
     axios
@@ -22,66 +21,74 @@ const ContactedQueriesList = () => {
       });
   }, []);
 
-  return (
-<div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-200 py-10 px-6 md:px-10"
-style={{
-    backgroundImage: `url(${heroBg})`,
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-  }}>
-    <h1 className="text-3xl font-bold text-green-700 text-center mb-8">
-      Contact Form Queries
-    </h1>
+  const toggleExpand = (id) => {
+    setExpandedQueryIds((prev) =>
+      prev.includes(id)
+        ? prev.filter((item) => item !== id)
+        : [...prev, id]
+    );
+  };
 
-    {queries.length === 0 ? (
-      <p className="text-center text-gray-600">No contact queries found.</p>
-    ) : (
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-        {queries.map((query) => (
-          <div
-            key={query._id}
-            className="border border-gray-300 rounded-lg p-5 bg-white shadow-md hover:shadow-lg transition flex flex-col justify-between"
-          >
-            <div className="flex-grow">
-              <h3 className="text-base font-semibold text-gray-800 mb-1">
+  return (
+    <div className="space-y-3">
+      {queries.length === 0 ? (
+        <p className="text-sm text-center text-gray-500">No contact queries found.</p>
+      ) : (
+        queries.map((query) => {
+          const isExpanded = expandedQueryIds.includes(query._id);
+          const message = query.message || "";
+          const shortMessage = message.length > 100 && !isExpanded
+            ? `${message.slice(0, 100)}...`
+            : message;
+
+          return (
+            <div
+              key={query._id}
+              className="border border-gray-300 rounded-md px-4 py-3 bg-white shadow-sm"
+            >
+              <h3 className="text-sm font-semibold text-gray-800 mb-1">
                 📧 Email:
                 <span className="font-normal ml-1 text-gray-700 break-all">{query.email}</span>
               </h3>
-              <h4 className="text-base font-semibold text-gray-800 mb-1">
+              <h4 className="text-sm font-semibold text-gray-800 mb-1">
                 📝 Subject:
                 <span className="font-normal ml-1 text-gray-700">{query.subject}</span>
               </h4>
-              <h4 className="text-base font-semibold text-gray-800 mb-1">
-                📝 Message:
-              </h4>
-              <p className="text-base text-gray-700 mb-3 italic">
-                “{query.message}”
+              <h4 className="text-sm font-semibold text-gray-800">📝 Message:</h4>
+              <p className="text-sm text-gray-700 italic">
+                “{shortMessage}”
+                {message.length > 100 && (
+                  <button
+                    onClick={() => toggleExpand(query._id)}
+                    className="ml-2 text-blue-500 text-xs underline"
+                  >
+                    {isExpanded ? "Show less" : "Show more"}
+                  </button>
+                )}
               </p>
-              <p className="text-sm text-gray-400">
-                🕒{" "}
-                {new Date(query.createdAt).toLocaleDateString("en-IN", {
-                  day: "2-digit",
-                  month: "short",
-                  year: "numeric",
-                })}
-              </p>
-            </div>
 
-            {/* Open email client button */}
-            <div className="mt-4 flex justify-end">
-              <a
-                href={`mailto:${query.email}`}
-                className="w-9 h-9 rounded-full bg-green-100 text-green-600 flex items-center justify-center hover:bg-green-200 transition"
-                title="Reply"
-              >
-                <FiArrowRight className="w-5 h-5" />
-              </a>
+              <div className="flex justify-between items-center mt-2">
+                <p className="text-xs text-gray-400">
+                  🕒{" "}
+                  {new Date(query.createdAt).toLocaleDateString("en-IN", {
+                    day: "2-digit",
+                    month: "short",
+                    year: "numeric",
+                  })}
+                </p>
+                <a
+                  href={`mailto:${query.email}`}
+                  className="w-8 h-8 rounded-full bg-green-100 text-green-600 flex items-center justify-center hover:bg-green-200 transition"
+                  title="Reply"
+                >
+                  <FiArrowRight className="w-4 h-4" />
+                </a>
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
-    )}
-</div>
+          );
+        })
+      )}
+    </div>
   );
 };
 

@@ -1,31 +1,28 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import heroBg from "../../assets/images/hero-bg.png";
+import { FaTrash } from "react-icons/fa"; // ✅ Import trash icon
 
 const UserList = () => {
   const navigate = useNavigate();
   const [users, setUsers] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [filterRole, setFilterRole] = useState(""); // "" (all), "user", or "admin"
+  const [filterRole, setFilterRole] = useState("");
 
-  // 🔐 Check if logged-in user is admin
   useEffect(() => {
     const role = localStorage.getItem("role");
     if (!role || role !== "admin") {
       navigate("/login");
       return;
     }
-
-    fetchUsers(); // Fetch users initially
+    fetchUsers();
   }, [navigate]);
 
-  // Function to fetch users
   const fetchUsers = () => {
     fetch("http://localhost:5000/api/users/fetchusers", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "role": localStorage.getItem("role"),
+        role: localStorage.getItem("role"),
       },
     })
       .then((res) => res.json())
@@ -33,7 +30,6 @@ const UserList = () => {
       .catch((error) => console.error("Error fetching users:", error));
   };
 
-  // 🔥 Function to delete a user
   const deleteUser = (userId) => {
     if (!window.confirm("Are you sure you want to delete this user?")) return;
 
@@ -41,12 +37,12 @@ const UserList = () => {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        "role": localStorage.getItem("role"),
+        role: localStorage.getItem("role"),
       },
     })
       .then((res) => {
         if (res.ok) {
-          setUsers(users.filter((user) => user._id !== userId)); // Remove from UI
+          setUsers(users.filter((user) => user._id !== userId));
         } else {
           alert("Failed to delete user");
         }
@@ -54,7 +50,6 @@ const UserList = () => {
       .catch((error) => console.error("Error deleting user:", error));
   };
 
-  // 🔍 Filter logic
   const filteredUsers = users.filter((user) => {
     const matchesSearch = Object.values(user)
       .join(" ")
@@ -67,69 +62,57 @@ const UserList = () => {
   });
 
   return (
-    <div className="p-6" style={{
-      backgroundImage: `url(${heroBg})`,
-      backgroundSize: "cover",
-      backgroundPosition: "center",
-    }}>
-      <h2 className="text-2xl font-bold mb-4">Users</h2>
-
-      {/* 🔍 Search Bar */}
+    <div className="text-xs">
       <input
         type="text"
         placeholder="Search by name, email, role..."
-        className="border p-2 mb-4 w-full"
+        className="border p-1 mb-2 w-full text-xs"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
 
-      {/* 👥 Role Filter Buttons */}
-      <div className="mb-4">
+      <div className="mb-2 flex gap-2">
         <button
           onClick={() => setFilterRole("")}
-          className={`px-4 py-2 rounded ${filterRole === "" ? "bg-gray-600 text-white" : "bg-gray-300"}`}
+          className={`px-2 py-1 rounded text-xs ${filterRole === "" ? "bg-gray-600 text-white" : "bg-gray-200"}`}
         >
           All
         </button>
         <button
           onClick={() => setFilterRole("user")}
-          className={`px-4 py-2 ml-2 rounded ${filterRole === "user" ? "bg-blue-600 text-white" : "bg-gray-300"}`}
+          className={`px-2 py-1 rounded text-xs ${filterRole === "user" ? "bg-blue-600 text-white" : "bg-gray-200"}`}
         >
           Users
         </button>
         <button
           onClick={() => setFilterRole("admin")}
-          className={`px-4 py-2 ml-2 rounded ${filterRole === "admin" ? "bg-red-600 text-white" : "bg-gray-300"}`}
+          className={`px-2 py-1 rounded text-xs ${filterRole === "admin" ? "bg-red-600 text-white" : "bg-gray-200"}`}
         >
           Admins
         </button>
       </div>
 
-      {/* 📋 User Table */}
-      <div className="overflow-x-auto">
-        <table className="w-full border-collapse border border-gray-300">
+      <div className="overflow-x-auto no-scrollbar max-h-[280px] overflow-y-auto">
+        <table className="w-full border-collapse border border-gray-300 text-xs">
           <thead>
             <tr className="bg-gray-200">
-              <th className="border p-2">Name</th>
-              <th className="border p-2">Email</th>
-              <th className="border p-2">Role</th>
-              <th className="border p-2">Actions</th>
+              <th className="border p-1">Name</th>
+              <th className="border p-1">Email</th>
+              <th className="border p-1">Role</th>
+              <th className="border p-1">Del</th>
             </tr>
           </thead>
           <tbody>
             {filteredUsers.map((user) => (
               <tr key={user._id} className="hover:bg-gray-100">
-                <td className="border p-2">{user.name}</td>
-                <td className="border p-2">{user.email}</td>
-                <td className={`border p-2 ${user.role === "admin" ? "text-red-600" : "text-blue-600"}`}>
+                <td className="border p-1">{user.name}</td>
+                <td className="border p-1">{user.email}</td>
+                <td className={`border p-1 ${user.role === "admin" ? "text-red-600" : "text-blue-600"}`}>
                   {user.role}
                 </td>
-                <td className="border p-2">
-                  <button
-                    onClick={() => deleteUser(user._id)}
-                    className="bg-red-600 text-white px-4 py-2 rounded"
-                  >
-                    Delete ❌
+                <td className="border p-1 text-center">
+                  <button onClick={() => deleteUser(user._id)} className="text-red-600 hover:text-red-800">
+                    <FaTrash size={12} />
                   </button>
                 </td>
               </tr>
