@@ -1,7 +1,25 @@
-
-
-
-  [
+[
+  {
+    "question": "What does a red traffic light mean?",
+    "options": ["Go", "Stop", "Slow Down", "None"],
+    "answer": "Stop"
+  },
+  {
+    "question": "When can you overtake a vehicle?",
+    "options": ["On a sharp turn", "When it is safe", "At intersections", "Near pedestrian crossings"],
+    "answer": "When it is safe"
+  },
+  
+  {
+    "question": "Who has the right of way at a four-way stop?",
+    "options": ["The first vehicle to stop", "The largest vehicle", "The fastest vehicle", "No one"],
+    "answer": "The first vehicle to stop"
+  },
+  {
+    "question": "What should you do if an ambulance is approaching with flashing lights and siren?",
+    "options": ["Speed up", "Stop and block the road", "Move to the side and let it pass", "Ignore it"],
+    "answer": "Move to the side and let it pass"
+  },  
   {
     "question": "What does a red traffic light mean?",
     "options": ["Stop", "Go", "Proceed with caution", "None of the above"],
