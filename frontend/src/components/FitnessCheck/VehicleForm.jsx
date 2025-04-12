@@ -2,16 +2,16 @@ import { useState } from "react";
 
 const VehicleForm = ({ onSubmit }) => {
     const [formData, setFormData] = useState({
-        regNumber: "",
-        ownerName: "",
-        chassisNumber: "",
-        engineNumber: "",
-        model: "",
-        year: "",
-        vehicleType: "",
-        fuelType: "",
-        emissionLevel: "",
-        insuranceExpiry: "", // ✅ Added this field
+        regNumber: "UP32SQ5441",
+        ownerName: "Stuti Rajeev",
+        chassisNumber: "A32ME665549",
+        engineNumber: "MAE6T5942658",
+        model: "Skoda Kylaq",
+        year: "2024",
+        vehicleType: "Car",
+        fuelType: "Petrol",
+        emissionLevel: "BS-VI",
+        insuranceExpiry: "01-20-2026", // ✅ Added this field
         pollutionValid: false, // Checkbox for Pollution Certificate
     });
 
