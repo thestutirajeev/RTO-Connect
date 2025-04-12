@@ -36,7 +36,7 @@ const About = () => {
               services—because efficiency is what drives us forward.
             </p>
             
-            <Link to="/services">
+            <Link to="/home#service">
               <button className="btn">Learn More</button>
             </Link>
           </div>

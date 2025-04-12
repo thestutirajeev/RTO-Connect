@@ -16,7 +16,7 @@ const navLinks = [
     display: 'Dashboard'
   },
   {
-    path:'/apply-dllicense',
+    path:'/apply-license',
     display: 'Apply for DL'
   },
   {

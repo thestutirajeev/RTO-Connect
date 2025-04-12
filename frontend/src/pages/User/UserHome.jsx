@@ -4,10 +4,10 @@ import { BsArrowRight } from "react-icons/bs";
 import heroBg from "../../assets/images/hero-bg.png";
 
 // Add these image imports
-import registerImg from "../../assets/images/userDashImage/register.jpeg";
-import fitnessImg from "../../assets/images/userDashImage/fitness.jpeg";
-import testImg from "../../assets/images/userDashImage/test.jpeg";
-import applyDLImg from "../../assets/images/userDashImage/applyDL.jpeg";
+import registerImg from "../../assets/images/dashImage/register.jpeg";
+import fitnessImg from "../../assets/images/dashImage/fitness.jpeg";
+import testImg from "../../assets/images/dashImage/test.jpeg";
+import applyDLImg from "../../assets/images/dashImage/applyDL.jpeg";
 
 const UserHome = () => {
   const [userName, setUserName] = useState("User");
@@ -59,7 +59,7 @@ const UserHome = () => {
       title: "Apply For Driving License",
       description:
         "Submit your DL application with accurate test and personal details to proceed smoothly with the process.",
-      route: "/apply-dllicense",
+      route: "/apply-license",
       img: applyDLImg,
       color: "green",
     },
