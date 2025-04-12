@@ -1,23 +1,136 @@
-[
-    {
-      "question": "What does a red traffic light mean?",
-      "options": ["Go", "Stop", "Slow Down", "None"],
-      "answer": "Stop"
-    },
-    {
-      "question": "When can you overtake a vehicle?",
-      "options": ["On a sharp turn", "When it is safe", "At intersections", "Near pedestrian crossings"],
-      "answer": "When it is safe"
-    },
-    
-    {
-      "question": "Who has the right of way at a four-way stop?",
-      "options": ["The first vehicle to stop", "The largest vehicle", "The fastest vehicle", "No one"],
-      "answer": "The first vehicle to stop"
-    },
-    {
-      "question": "What should you do if an ambulance is approaching with flashing lights and siren?",
-      "options": ["Speed up", "Stop and block the road", "Move to the side and let it pass", "Ignore it"],
-      "answer": "Move to the side and let it pass"
-    }
-  ]
+
+
+
+  [
+  {
+    "question": "What does a red traffic light mean?",
+    "options": ["Stop", "Go", "Proceed with caution", "None of the above"],
+    "answer": "Stop"
+  },
+  {
+    "question": "What should you do when approaching a pedestrian crossing?",
+    "options": ["Speed up", "Stop and give way to pedestrians", "Honk to warn", "Change lane"],
+    "answer": "Stop and give way to pedestrians"
+  },
+  {
+    "question": "Which document is mandatory while driving?",
+    "options": ["Aadhar Card", "PAN Card", "Driving License", "Ration Card"],
+    "answer": "Driving License"
+  },
+  {
+    "question": "When is overtaking not allowed?",
+    "options": [
+      "On a clear road",
+      "At a zebra crossing",
+      "When the road is empty",
+      "During daytime"
+    ],
+    "answer": "At a zebra crossing"
+  },
+  {
+    "question": "What does a yellow traffic light mean?",
+    "options": ["Stop immediately", "Speed up", "Be ready to stop", "Go"],
+    "answer": "Be ready to stop"
+  },
+  {
+    "question": "The speed limit in cities is usually:",
+    "options": ["50 km/h", "80 km/h", "100 km/h", "No limit"],
+    "answer": "50 km/h"
+  },
+  {
+    "question": "Which of these is a sign of a one-way road?",
+    "options": ["Blue upward arrow", "Red circle", "Green square", "Black cross"],
+    "answer": "Blue upward arrow"
+  },
+  {
+    "question": "Using a mobile phone while driving is:",
+    "options": ["Allowed", "Dangerous and punishable", "Recommended", "Safe in traffic"],
+    "answer": "Dangerous and punishable"
+  },
+  {
+    "question": "Which vehicle has the right of way at a roundabout?",
+    "options": ["Entering vehicle", "Vehicle on the right", "Vehicle inside the roundabout", "Heavy vehicle"],
+    "answer": "Vehicle inside the roundabout"
+  },
+  {
+    "question": "What is the minimum age to get a driving license for LMV?",
+    "options": ["16 years", "18 years", "21 years", "25 years"],
+    "answer": "18 years"
+  },
+
+  {
+    "question": "Drinking and driving is:",
+    "options": ["Allowed at night", "Safe below 60km/h", "Punishable offense", "Not an issue"],
+    "answer": "Punishable offense"
+  },
+  {
+    "question": "A broken white line on the road means:",
+    "options": ["No overtaking", "Park here", "Lane division", "Slow down"],
+    "answer": "Lane division"
+  },
+  {
+    "question": "What should you check before overtaking?",
+    "options": ["Headlights", "Speedometer", "Mirrors and blind spots", "Radio"],
+    "answer": "Mirrors and blind spots"
+  },
+  {
+    "question": "What does the horn symbol on the dashboard indicate?",
+    "options": ["Airbag", "Horn switch", "Hazard lights", "Speed limiter"],
+    "answer": "Horn switch"
+  },
+  {
+    "question": "How often should you check tyre pressure?",
+    "options": ["Once a year", "Every drive", "When flat", "Monthly"],
+    "answer": "Every drive"
+  },
+  {
+    "question": "What does a double solid white line mean?",
+    "options": ["Free to cross", "Overtaking allowed", "No lane changing", "Speed up"],
+    "answer": "No lane changing"
+  },
+  {
+    "question": "A triangle warning sign means:",
+    "options": ["Instruction", "Mandatory", "Warning", "Safe zone"],
+    "answer": "Warning"
+  },
+  {
+    "question": "Seat belts are to be worn:",
+    "options": ["Only on highways", "Only by driver", "At all times", "Only in front seat"],
+    "answer": "At all times"
+  },
+  {
+    "question": "In heavy rain, you should:",
+    "options": ["Speed up", "Switch off lights", "Drive carefully and use wipers", "Drive on wrong side"],
+    "answer": "Drive carefully and use wipers"
+  },
+  {
+    "question": "Overtaking from the left is:",
+    "options": ["Always allowed", "Never allowed", "Allowed when right is blocked", "Recommended"],
+    "answer": "Allowed when right is blocked"
+  },
+  {
+    "question": "What should you do if an ambulance is behind you?",
+    "options": ["Block it", "Speed up", "Give way", "Ignore"],
+    "answer": "Give way"
+  },
+  {
+    "question": "What is the color of the reverse light?",
+    "options": ["Red", "Amber", "White", "Blue"],
+    "answer": "White"
+  },
+  {
+    "question": "Before turning, you should:",
+    "options": ["Speed up", "Signal well in advance", "Honk", "Turn headlights off"],
+    "answer": "Signal well in advance"
+  },
+  {
+    "question": "What is aquaplaning?",
+    "options": ["Skidding on ice", "Flying car", "Losing grip on wet road", "Speed bump effect"],
+    "answer": "Losing grip on wet road"
+  },
+  {
+    "question": "What does ABS stand for?",
+    "options": ["Auto Brake System", "Anti-lock Braking System", "Anti-Block Sensor", "All Brakes Safe"],
+    "answer": "Anti-lock Braking System"
+  }
+]
