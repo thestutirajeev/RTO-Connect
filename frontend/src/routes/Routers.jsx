@@ -15,10 +15,10 @@ import UserHome from "../pages/User/UserHome";
 import VehicleRegistration from "../pages/User/VehicleRegistration";
 import FitnessCheck from "../pages/User/FitnessCheck";
 import DLTest from "../pages/User/DLTest";
-import ApplicationForm from "../pages/User/ApplicationFormWrapper";
+import ApplicationForm from "../pages/User/ApplicationForm";
 import ApplicationStatus from "../pages/User/ApplicationStatus";
 import Feedback from "../pages/User/FeedbackForm";
-import CardPaymentSuccess from "../pages/User/Payment/CardPaymentSuccess";
+import CardPaymentSuccess from "../components/Stripe/CardPaymentSuccess";
 
 import { Routes, Route } from 'react-router-dom';
 

@@ -4,6 +4,40 @@ import heroBg from "../../assets/images/hero-bg.png";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 
 const ApplicationFormStripe = () => {
+  const [showOverlay, setShowOverlay] = useState(true);
+  const [statusMessage, setStatusMessage] = useState("");
+  
+  const checkTestStatus = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        setStatusMessage("❌ You must be logged in to check eligibility.");
+        return;
+      }
+
+      const response = await fetch(
+        "http://localhost:5000/api/applications/check-test-status",
+        {
+          method: "GET",
+          headers: {
+            Authorization: token,
+          },
+        }
+      );
+
+      const data = await response.json();
+      if (response.status === 200) {
+        setShowOverlay(false); // Hide overlay if eligible
+      } else {
+        setStatusMessage(`⚠️ ${data.message}`);
+      }
+    } catch (error) {
+      console.error("Error checking test status:", error);
+      setStatusMessage("❌ Something went wrong. Please try again.");
+    }
+  };
+
+  // Stripe hooks
   const stripe = useStripe();
   const elements = useElements();
 
@@ -18,15 +52,7 @@ const ApplicationFormStripe = () => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
-  const allCategories = [
-    "LMV",
-    "MCWG",
-    "HMV",
-    "MCWOG",
-    "LMV-TR",
-    "E-Rickshaw",
-    "Tractor",
-  ];
+  const allCategories = [  "LMV",    "MCWG",    "HMV",    "MCWOG",    "LMV-TR",    "E-Rickshaw",    "Tractor",  ];
   const categoryFee = 500;
   const totalAmount = selectedCategories.length * categoryFee;
   
@@ -39,14 +65,14 @@ const ApplicationFormStripe = () => {
   maxDob.setFullYear(today.getFullYear() - 18);
   const maxDobStr = maxDob.toISOString().split("T")[0];
 
-  // Set default test date on initial load (useEffect can also be used here)
+  // Set default test date on initial load 
   useEffect(() => {
     if (!testDate) {
       setTestDate(minTestDateStr);
     }
   }, [testDate, minTestDateStr]);
 
-
+  
   const moveCategory = (cat, toSelected) => {
     if (toSelected) {
       setSelectedCategories([...selectedCategories, cat]);
@@ -72,13 +98,7 @@ const ApplicationFormStripe = () => {
       return;
     }
     
-    if (
-      !testDate ||
-      !aadharNumber ||
-      !dob ||
-      !bloodGroup ||
-      !postalCode ||
-      selectedCategories.length === 0
+    if (      !testDate ||      !aadharNumber ||      !dob ||      !bloodGroup ||      !postalCode ||      selectedCategories.length === 0
     ) {
       setError("All fields including at least one vehicle category are required.");
       setIsLoading(false);
@@ -193,6 +213,36 @@ const ApplicationFormStripe = () => {
         backgroundPosition: "center",
       }}
     >
+      {/* Overlay for eligibility check */}
+      {showOverlay && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg text-center w-96">
+            <h2 className="text-lg font-semibold text-gray-800 mb-4">
+              Are you eligible for DL Application?
+            </h2>
+            <button
+              onClick={checkTestStatus}
+              className="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition"
+            >
+              Check
+            </button>
+            {statusMessage && (
+              <p className="mt-3 text-red-500 text-sm">{statusMessage}</p>
+            )}
+            {statusMessage.includes("Please take the test again") && (
+              <button
+                className="w-full mt-3 bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600 transition"
+                onClick={() => navigate("/dl-test")}
+              >
+                Take Test
+              </button>
+            )}
+          </div>
+        </div>
+      )}
+
+
+      {/*Form Section*/}
       <div className="max-w-7xl mx-auto p-6 bg-white rounded-lg shadow-md">
         <h2 className="text-2xl font-bold text-center text-blue-600 mb-6">
           Apply for Driving License

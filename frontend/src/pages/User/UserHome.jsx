@@ -67,15 +67,14 @@ const UserHome = () => {
 
   return (
     <div
-      className="min-h-screen p-6 md:p-10"
+      className="min-h-screen p-4 md:p-10"
       style={{
         backgroundImage: `url(${heroBg})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
     >
-      <div className="bg-white bg-opacity-80 backdrop-blur-md p-6 md:p-10 rounded-lg shadow-md">
-        <h1 className="text-3xl md:text-4xl font-bold text-center text-blue-700 mb-10">
+        <h1 className="text-2xl md:text-3xl font-bold text-center text-blue-700 mb-10">
           Welcome, {userName}
         </h1>
 
@@ -119,7 +118,6 @@ const UserHome = () => {
           
           ))}
         </div>
-      </div>
     </div>
   );
 };

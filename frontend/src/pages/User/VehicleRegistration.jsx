@@ -1,6 +1,6 @@
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import VehicleRegistrationFormStripe from "./VehicleRegistrationFormStripe";
+import VehicleRegistrationFormStripe from "../../components/Stripe/VehicleRegistrationFormStripe";
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
