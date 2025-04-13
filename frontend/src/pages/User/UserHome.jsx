@@ -8,8 +8,10 @@ import registerImg from "../../assets/images/dashImage/register.jpeg";
 import fitnessImg from "../../assets/images/dashImage/fitness.jpeg";
 import testImg from "../../assets/images/dashImage/test.jpeg";
 import applyDLImg from "../../assets/images/dashImage/applyDL.jpeg";
+import { useAlert } from "../../components/Alerts/AlertManager";
 
 const UserHome = () => {
+  const { showAlert } = useAlert();
   const [userName, setUserName] = useState("User");
   const navigate = useNavigate();
 
@@ -25,7 +27,7 @@ const UserHome = () => {
     if (token) {
       return true;
     } else {
-      alert("Please log in first.");
+      showAlert("failure", "Please log in first.");
       return false;
     }
   };

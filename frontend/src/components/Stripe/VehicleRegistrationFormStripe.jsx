@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 import heroBg from '../../assets/images/hero-bg.png';
+import { useAlert } from "../Alerts/AlertManager.jsx";
 
 // Vehicle types with registration fees
 const vehicleTypes = [
@@ -13,6 +14,8 @@ const vehicleTypes = [
 ];
 
 const VehicleRegistrationFormStripe = () => {
+  const { showAlert } = useAlert();
+
   const stripe = useStripe();
   const elements = useElements();
   const navigate = useNavigate();
@@ -78,7 +81,7 @@ const VehicleRegistrationFormStripe = () => {
     setError(null);
     
     if (!localStorage.getItem("token")) {
-      alert("You must be logged in to register a vehicle.");
+      showAlert("failure", "You must be logged in to register a vehicle.");
       navigate("/login");
       return;
     }

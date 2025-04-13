@@ -2,8 +2,10 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import heroBg from '../assets/images/hero-bg.png';
+import { useAlert } from "../components/Alerts/AlertManager";
 
 const Contact = () => {
+  const { showAlert } = useAlert();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ email: "", subject: "", message: "" });
 
@@ -15,12 +17,12 @@ const Contact = () => {
     e.preventDefault();
     try {
       await axios.post("http://localhost:5000/api/contact/contact", formData);
-      alert("Query submitted successfully!");
+      showAlert("success", "Query submitted successfully!");
       setFormData({ email: "", subject: "", message: "" });
       navigate("/");
     } catch (error) {
       console.error("Error submitting query:", error);
-      alert("Failed to submit query.");
+      showAlert("failure", "Failed to submit query.");
     }
   };
 

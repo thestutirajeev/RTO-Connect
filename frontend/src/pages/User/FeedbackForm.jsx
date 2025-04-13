@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { AiFillStar } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom';
+import { useAlert } from '../../components/Alerts/AlertManager.jsx';
 const FeedbackForm = () => {
+  const { showAlert } = useAlert();
   const [rating, setRating] = useState(0);
   const [hover, setHover] = useState(0);
   const [reviewText, setReviewText] = useState("");
@@ -12,7 +14,7 @@ const FeedbackForm = () => {
 
     const token = localStorage.getItem("token");
     if (!token) {
-      alert("Please login to submit feedback!");
+      showAlert("failure", "Please login to submit feedback!");
       navigate("/login");
       return;
     }
@@ -34,17 +36,17 @@ const FeedbackForm = () => {
       const data = await response.json();
 
       if (response.ok) {
-        alert("Thank you for your feedback!");
+        showAlert("success", "Feedback submitted successfully!");
         setRating(0);
         setHover(0);
         setReviewText("");
         navigate("/");
       } else {
-        alert(data.message || "Something went wrong.");
+        showAlert("failure", data.message || "Something went wrong!");
       }
     } catch (err) {
       console.error(err);
-      alert("Error submitting feedback");
+      showAlert("failure", "Error submitting feedback");
     }
   };
 

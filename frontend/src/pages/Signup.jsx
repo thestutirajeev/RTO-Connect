@@ -1,20 +1,14 @@
 import { useState } from 'react';
 
 import signupImg from "../assets/images/signup.gif";
-import avatar from "../assets/images/doctor-img01.png";
 import { Link } from 'react-router-dom';
 import { signup } from '../services/authService';
+import { useAlert } from '../components/Alerts/AlertManager';
+import { useNavigate } from 'react-router-dom';
 const Signup = () => {
-
-  //const [selectedFile,setSelectedFile] = useState(null);
-  //const [previewURL,setPreviewURL] = useState("");
-
-  const [formData, setFormData] = useState({
-    name:'',
-    email:'',
-    password:'',
-    role: "user"
-  });
+  const navigate = useNavigate();
+  const { showAlert } = useAlert();
+  const [formData, setFormData] = useState({    name:'',    email:'',    password:'',    role: "user"  });
   const [message, setMessage] = useState("");
 
   const handleChange = (e) => {
@@ -27,7 +21,17 @@ const Signup = () => {
       //Calling the signup function from authService
       const res = await signup(formData);
       setMessage(res.message);
+      if (res.status === "success") {
+        showAlert("success", res.message);
+        setTimeout(() => {
+          navigate("/login"); 
+        }, 5000); // Redirect after 2 seconds
+      } else {
+        showAlert("failure", res.message);
+        showAlert("error", res.message);
+      }
     } catch (error) {
+      showAlert("failure", error.message);
       setMessage(error.message);
     }
   };

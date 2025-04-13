@@ -2,8 +2,9 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import heroBg from "../../assets/images/hero-bg.png";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
-
 const ApplicationFormStripe = () => {
+
+  // State for eligibility check
   const [showOverlay, setShowOverlay] = useState(true);
   const [statusMessage, setStatusMessage] = useState("");
   
