@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import { AiFillStar } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom';
 import { useAlert } from '../../components/Alerts/AlertManager.jsx';
+import feedbackGif from '../../assets/images/feedback.gif';
 const FeedbackForm = () => {
   const { showAlert } = useAlert();
   const [rating, setRating] = useState(0);
   const [hover, setHover] = useState(0);
   const [reviewText, setReviewText] = useState("");
   const navigate = useNavigate();
+
 
   const handleSubmitReview = async (e) => {
     e.preventDefault();
@@ -49,69 +51,78 @@ const FeedbackForm = () => {
       showAlert("failure", "Error submitting feedback");
     }
   };
-
   return (
-    <form 
-  onSubmit={handleSubmitReview} 
-  className="max-w-xl mx-auto bg-white p-6 rounded-lg shadow-md border border-gray-200"
->
-  {/* Rating Section */}
-  <div>
-    <h3 className="text-heading text-[18px] leading-6 font-semibold mb-3 text-gray-800">
-      How would you rate your RTO Connect experience?*
-    </h3>
-
-    <div className="flex gap-2 mb-4">
-      {[...Array(5).keys()].map((_, index) => {
-        index += 1;
-        return (
-          <button 
-            key={index}
-            type="button"
-            className={`transition-colors duration-200 text-[26px] ${
-              index <= (hover || rating)
-                ? "text-yellow-400"
-                : "text-gray-300"
-            }`}
-            onClick={() => setRating(index)}
-            onMouseEnter={() => setHover(index)}
-            onMouseLeave={() => setHover(0)}
-            onDoubleClick={() => {
-              setHover(0);
-              setRating(0);
-            }}
-          >
-            <AiFillStar />
-          </button>
-        );
-      })}
-    </div>
-  </div>
-
-  {/* Textarea Section */}
-  <div className="mt-6">
-    <h3 className="text-heading text-[18px] leading-6 font-semibold mb-3 text-gray-800">
-      Share your feedback or suggestions*
-    </h3>
-
-    <textarea
-      className="border border-gray-300 focus:ring-2 focus:ring-primaryColor focus:outline-none w-full px-4 py-3 rounded-md shadow-sm text-gray-700 placeholder:text-gray-400 transition-all"
-      rows="5"
-      placeholder="Tell us how RTO Connect helped you..."
-      value={reviewText}
-      onChange={(e) => setReviewText(e.target.value)}
-    ></textarea>
-  </div>
-
-  {/* Submit Button */}
-  <button
-    type="submit"
-    className="btn mt-6 bg-primaryColor hover:bg-primaryColor/90 text-white px-6 py-2 rounded-md shadow-md transition-all duration-300"
-  >
-    Submit Feedback
-  </button>
-</form>
-
+    <section className="px-5 xl:px-0">
+      <div className="max-w-[1170px] mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2">
+          {/* Feedback GIF Section */}
+          <div className="hidden lg:block rounded-l-lg">
+            <figure className="rounded-l-lg">
+              <img src={feedbackGif} alt="Feedback" className="w-full rounded-l-lg" />
+            </figure>
+          </div>
+  
+          {/* Feedback Form Section */}
+          <div className="rounded-l-lg lg:pl-16 py-10">
+            <h3 className="text-headingColor text-[22px] leading-9 font-bold mb-10">
+              We value your <span className="text-primaryColor">Feedback</span>
+            </h3>
+            <form onSubmit={handleSubmitReview}>
+              {/* Rating Section */}
+              <div className="mb-5">
+                <h3 className="text-headingColor text-[18px] leading-6 font-semibold mb-3">
+                  How would you rate your RTO Connect experience?*
+                </h3>
+                <div className="flex gap-2">
+                  {[...Array(5).keys()].map((_, index) => {
+                    index += 1;
+                    return (
+                      <button
+                        key={index}
+                        type="button"
+                        className={`transition-colors duration-200 text-[26px] ${
+                          index <= (hover || rating) ? "text-yellow-400" : "text-gray-300"
+                        }`}
+                        onClick={() => setRating(index)}
+                        onMouseEnter={() => setHover(index)}
+                        onMouseLeave={() => setHover(0)}
+                        onDoubleClick={() => {
+                          setHover(0);
+                          setRating(0);
+                        }}
+                      >
+                        <AiFillStar />
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+  
+              {/* Textarea Section */}
+              <div className="mb-5">
+                <textarea
+                  className="w-full pr-4 py-3 border-b border-solid border-[#0066ff61] focus:outline-none focus:border-b-primaryColor text-[16px] leading-7 text-headingColor placeholder:text-textColor cursor-pointer"
+                  rows="5"
+                  placeholder="Tell us how RTO Connect helped you..."
+                  value={reviewText}
+                  onChange={(e) => setReviewText(e.target.value)}
+                ></textarea>
+              </div>
+  
+              {/* Submit Button */}
+              <div className="mt-7">
+                <button
+                  type="submit"
+                  className="w-full bg-primaryColor text-white text-[18px] leading-[30px] rounded-lg px-4 py-3"
+                >
+                  Submit Feedback
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 };
 

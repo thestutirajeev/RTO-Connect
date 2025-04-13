@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 import heroBg from '../../assets/images/hero-bg.png';
+import vehicleGif from '../../assets/images/vehicles.gif';
 import { useAlert } from "../Alerts/AlertManager.jsx";
 
 // Vehicle types with registration fees
@@ -166,120 +167,237 @@ const VehicleRegistrationFormStripe = () => {
   };
 
   return (
-    <section style={{ backgroundImage: `url(${heroBg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
-      <div className="form-container mx-auto p-6 rounded-lg shadow-md bg-white">
-        <h2 className="text-4xl font-bold text-center mb-4">Vehicle Registration</h2>
-        <form onSubmit={handleSubmit} className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:gap-6">
-          {/* Owner Details */}
-          <h3 className="text-xl font-semibold col-span-full">Owner Details</h3>
-          <div>
-            <label className="block text-sm font-medium">Owner Name:</label>
-            <input type="text" name="ownerName" value={formData.ownerName} onChange={handleChange} required className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
-          </div>
-          <div>
-            <label className="block text-sm font-medium">Email:</label>
-            <input type="email" name="ownerEmail" value={formData.ownerEmail} onChange={handleChange} required className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
-          </div>
-          <div>
-            <label className="block text-sm font-medium">Address:</label>
-            <input type="text" name="ownerAddress" value={formData.ownerAddress} onChange={handleChange} required className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
-          </div>
-          <div>
-            <label className="block text-sm font-medium">Postal Code:</label>
-            <input type="text" name="postalCode" value={formData.postalCode} onChange={handleChange} required className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
-          </div>
-          <div>
-            <label className="block text-sm font-medium">Aadhar Number:</label>
-            <input type="text" name="ownerAadhar" value={formData.ownerAadhar} onChange={handleChange} required className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
-          </div>
-      
-          {/* Vehicle Details */}
-          <h3 className="text-xl font-semibold col-span-full">Vehicle Details</h3>
-          <div>
-            <label className="block text-sm font-medium">Manufacturer:</label>
-            <input type="text" name="vehicleManufacturer" value={formData.vehicleManufacturer} onChange={handleChange} required className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
-          </div>
-          <div>
-            <label className="block text-sm font-medium">Model:</label>
-            <input type="text" name="vehicleModel" value={formData.vehicleModel} onChange={handleChange} required className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
-          </div>
-          <div>
-            <label className="block text-sm font-medium">Vehicle Type:</label>
-            <select 
-              name="vehicleType" 
-              value={formData.vehicleType} 
-              onChange={handleChange} 
-              required 
-              className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-            >
-              {vehicleTypes.map((vehicle) => (
-                <option key={vehicle.type} value={vehicle.type}>
-                  {vehicle.type} (₹{vehicle.fee})
-                </option>
-              ))}
-            </select>
-          </div>
-          <div>
-            <label className="block text-sm font-medium">Fuel Type:</label>
-            <input type="text" name="fuelType" value={formData.fuelType} onChange={handleChange} required className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
-          </div>
-          <div>
-            <label className="block text-sm font-medium">Engine Number:</label>
-            <input type="text" name="engineNumber" value={formData.engineNumber} onChange={handleChange} required className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
-          </div>
-          <div>
-            <label className="block text-sm font-medium">Chassis Number:</label>
-            <input type="text" name="chassisNumber" value={formData.chassisNumber} onChange={handleChange} required className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
-          </div>
-
-          {/* Registration Details */}
-          <h3 className="text-xl font-semibold col-span-full">Registration Details</h3>
-          <div>
-            <label className="block text-sm font-medium">Registration Number:</label>
-            <input type="text" name="registrationNumber" value={formData.registrationNumber} onChange={handleChange} required className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
-          </div>
-          <div>
-            <label className="block text-sm font-medium">Start Date:</label>
-            <input type="date" value={formData.registrationStartDate} readOnly
-                   className="w-full p-2 border rounded bg-gray-100" />
-          </div>
-          <div>
-            <label className="block text-sm font-medium">End Date:</label>
-            <input type="date" value={formData.registrationEndDate} readOnly
-                   className="w-full p-2 border rounded bg-gray-100" />
-          </div>
-
-          {/* Payment Section */}
-          <div className="col-span-full space-y-4">
-            <div className="p-4 border rounded">
-              <label className="block text-lg font-semibold mb-4">
-                Total Fee: ₹{formData.registrationFee}
-              </label>
-              <CardElement 
-                options={{
-                  hidePostalCode: true ,
-                  style: {
-                    base: {
-                      fontSize: '16px',
-                      color: '#424770',
-                      '::placeholder': { color: '#aab7c4' }
-                    },
-                    invalid: { color: '#9e2146' }
-                  }
-                }}
-                className="p-3 border rounded"
+    <section
+      style={{
+        backgroundImage: `url(${heroBg})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+      className="px-5 xl:px-0 py-10"
+    >
+      <h2 className="text-2xl font-bold text-center text-primaryColor">
+        Vehicle Registration
+      </h2>
+      <div className="max-w-[1170px] mx-auto grid grid-cols-1 lg:grid-cols-12">
+        {/* Vehicles GIF Section */}
+        <div className="hidden lg:block lg:col-span-3 bg-primaryColor rounded-l-lg">
+          <figure className="h-full">
+            <img
+              src={vehicleGif}
+              alt="Vehicles"
+              className="w-full h-full object-cover rounded-l-lg"
+            />
+          </figure>
+        </div>
+  
+        {/* Form Section */}
+        <div className="lg:col-span-9 bg-white rounded-r-lg p-6 shadow-md">
+          <form
+            onSubmit={handleSubmit}
+            className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 text-sm"
+          >
+            {/* Owner Details */}
+            <h3 className="text-lg font-medium col-span-full text-headingColor">
+              Owner Details
+            </h3>
+            <div>
+              <label className="block font-medium">Owner Name:</label>
+              <input
+                type="text"
+                name="ownerName"
+                value={formData.ownerName}
+                onChange={handleChange}
+                required
+                className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primaryColor"
               />
             </div>
-
-            <button type="submit" disabled={isLoading}
-                    className="col-span-full w-full px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 
-                             disabled:opacity-50 disabled:cursor-not-allowed">
-              {isLoading ? 'Processing Payment...' : 'Pay & Register Vehicle'}
-            </button>
-
-            {error && <p className="text-red-500 text-center mt-4">{error}</p>}
-          </div>
-        </form>
+            <div>
+              <label className="block font-medium">Email:</label>
+              <input
+                type="email"
+                name="ownerEmail"
+                value={formData.ownerEmail}
+                onChange={handleChange}
+                required
+                className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primaryColor"
+              />
+            </div>
+            <div>
+              <label className="block font-medium">Address:</label>
+              <input
+                type="text"
+                name="ownerAddress"
+                value={formData.ownerAddress}
+                onChange={handleChange}
+                required
+                className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primaryColor"
+              />
+            </div>
+            <div>
+              <label className="block font-medium">Postal Code:</label>
+              <input
+                type="text"
+                name="postalCode"
+                value={formData.postalCode}
+                onChange={handleChange}
+                required
+                className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primaryColor"
+              />
+            </div>
+            <div>
+              <label className="block font-medium">Aadhar Number:</label>
+              <input
+                type="text"
+                name="ownerAadhar"
+                value={formData.ownerAadhar}
+                onChange={handleChange}
+                required
+                className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primaryColor"
+              />
+            </div>
+  
+            {/* Vehicle Details */}
+            <h3 className="text-lg font-medium col-span-full text-headingColor">
+              Vehicle Details
+            </h3>
+            <div>
+              <label className="block font-medium">Manufacturer:</label>
+              <input
+                type="text"
+                name="vehicleManufacturer"
+                value={formData.vehicleManufacturer}
+                onChange={handleChange}
+                required
+                className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primaryColor"
+              />
+            </div>
+            <div>
+              <label className="block font-medium">Model:</label>
+              <input
+                type="text"
+                name="vehicleModel"
+                value={formData.vehicleModel}
+                onChange={handleChange}
+                required
+                className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primaryColor"
+              />
+            </div>
+            <div>
+              <label className="block font-medium">Vehicle Type:</label>
+              <select
+                name="vehicleType"
+                value={formData.vehicleType}
+                onChange={handleChange}
+                required
+                className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primaryColor"
+              >
+                {vehicleTypes.map((vehicle) => (
+                  <option key={vehicle.type} value={vehicle.type}>
+                    {vehicle.type} (₹{vehicle.fee})
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label className="block font-medium">Fuel Type:</label>
+              <input
+                type="text"
+                name="fuelType"
+                value={formData.fuelType}
+                onChange={handleChange}
+                required
+                className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primaryColor"
+              />
+            </div>
+            <div>
+              <label className="block font-medium">Engine Number:</label>
+              <input
+                type="text"
+                name="engineNumber"
+                value={formData.engineNumber}
+                onChange={handleChange}
+                required
+                className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primaryColor"
+              />
+            </div>
+            <div>
+              <label className="block font-medium">Chassis Number:</label>
+              <input
+                type="text"
+                name="chassisNumber"
+                value={formData.chassisNumber}
+                onChange={handleChange}
+                required
+                className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primaryColor"
+              />
+            </div>
+  
+            {/* Registration Details */}
+            <h3 className="text-lg font-medium col-span-full text-headingColor">
+              Registration Details
+            </h3>
+            <div>
+              <label className="block font-medium">Registration Number:</label>
+              <input
+                type="text"
+                name="registrationNumber"
+                value={formData.registrationNumber}
+                onChange={handleChange}
+                required
+                className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primaryColor"
+              />
+            </div>
+            <div>
+              <label className="block font-medium">Start Date:</label>
+              <input
+                type="date"
+                value={formData.registrationStartDate}
+                readOnly
+                className="w-full p-2 border rounded bg-gray-100"
+              />
+            </div>
+            <div>
+              <label className="block font-medium">End Date:</label>
+              <input
+                type="date"
+                value={formData.registrationEndDate}
+                readOnly
+                className="w-full p-2 border rounded bg-gray-100"
+              />
+            </div>
+  
+            {/* Payment Section */}
+            <div className="col-span-full space-y-4">
+              <label className="block text-md font-semibold">
+                Total Fee: ₹{formData.registrationFee}
+              </label>
+              <CardElement
+                options={{
+                  hidePostalCode: true,
+                  style: {
+                    base: {
+                      fontSize: "14px",
+                      color: "#424770",
+                      "::placeholder": { color: "#aab7c4" },
+                    },
+                    invalid: { color: "#9e2146" },
+                  },
+                }}
+                className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primaryColor"
+              />
+              <button
+                type="submit"
+                disabled={isLoading}
+                className="w-full px-4 py-2 bg-primaryColor text-white rounded hover:bg-primaryColor/90 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {isLoading ? "Processing Payment..." : "Pay & Register Vehicle"}
+              </button>
+              {error && (
+                <p className="text-center text-red-500">{error}</p>
+              )}
+            </div>
+          </form>
+        </div>
       </div>
     </section>
   );
