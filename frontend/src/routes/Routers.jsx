@@ -15,9 +15,10 @@ import UserHome from "../pages/User/UserHome";
 import VehicleRegistration from "../pages/User/VehicleRegistration";
 import FitnessCheck from "../pages/User/FitnessCheck";
 import DLTest from "../pages/User/DLTest";
-import ApplicationForm from "../pages/User/ApplicationForm";
+import ApplicationForm from "../pages/User/ApplicationFormWrapper";
 import ApplicationStatus from "../pages/User/ApplicationStatus";
 import Feedback from "../pages/User/FeedbackForm";
+import CardPaymentSuccess from "../pages/User/Payment/CardPaymentSuccess";
 
 import { Routes, Route } from 'react-router-dom';
 
@@ -48,6 +49,7 @@ const Routers = () => {
     <Route path="/apply-license" element={<ApplicationForm />} />
     <Route path="/application-status" element={<ApplicationStatus />} />
     <Route path="/feedback" element={<Feedback />} />
+    <Route path="/card-success" element={<CardPaymentSuccess />} />
   </Routes>   
 };
 
