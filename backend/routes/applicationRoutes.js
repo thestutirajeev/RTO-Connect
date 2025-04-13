@@ -136,6 +136,7 @@ router.get("/myapplications/:userId", async (req, res) => {
 router.get("/fetchapplications", async (req, res) => {
   try {
     const applications = await Application.find()
+      .sort({ applicationDate: -1 }) // Newest first
       .populate("userId", "name email role") // Populating user details
       .select("applicationDate testDate status aadharNumber dob bloodGroup"); // Selecting only necessary fields
 
