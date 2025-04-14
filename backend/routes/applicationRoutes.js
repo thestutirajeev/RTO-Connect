@@ -170,5 +170,22 @@ router.put("/updateapplicationstatus/:id", async (req, res) => {
   }
 });
 
+//For Admin
+// Delete application by ID
+router.delete("/delete/:id", async (req, res) => {
+  try {
+    const result = await Application.findByIdAndDelete(req.params.id);
+
+    if (!result) {
+      return res.status(404).json({ message: "Application not found" });
+    }
+
+    res.status(200).json({ message: "Application deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting application:", error);
+    res.status(500).json({ message: "Server error", error });
+  }
+});
+
 
 module.exports = router;

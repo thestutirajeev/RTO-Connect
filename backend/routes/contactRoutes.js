@@ -35,7 +35,21 @@ router.get("/contacts", async (req, res) => {
   }
 });
 
-module.exports = router;
+// DELETE a contact query by ID
+router.delete("/delete/:id", async (req, res) => {
+  try {
+    const result = await Contact.findByIdAndDelete(req.params.id);
+
+    if (!result) {
+      return res.status(404).json({ message: "Query not found" });
+    }
+
+    res.status(200).json({ message: "Query deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting query:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+});
 
 
 // Feedback submission route for authenticated users
