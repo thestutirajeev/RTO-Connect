@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
-import heroBg from '../../assets/images/hero-bg.png';
+import { FiTrash } from "react-icons/fi";
+import axios from "axios";
+
 const ViewApplication = () => {
   // In your component:
   const [expandedAppId, setExpandedAppId] = useState(null);
@@ -36,6 +38,15 @@ const ViewApplication = () => {
 
     fetchApplications();
   }, []);
+
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`http://localhost:5000/api/applications/delete/${id}`);
+      setApplications((prev) => prev.filter((app) => app._id !== id));
+    } catch (err) {
+      console.error("Error deleting query:", err);
+    }
+  };
 
   const handleStatusChange = async (id, status) => {
     try {
@@ -107,8 +118,16 @@ const ViewApplication = () => {
                       >
                         Reject
                       </button>
+
                     </div>
                   )}
+                </span>
+                {/* Delete Icon */}
+                <span className="text-red-500 cursor-pointer hover:text-red-700" onClick={(e) => {
+                  e.stopPropagation();
+                  handleDelete(app._id);
+                }}>
+                  <FiTrash />
                 </span>
                 <span className="ml-2">
                   {expandedAppId === app._id ? (

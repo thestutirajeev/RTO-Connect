@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { FiArrowRight } from "react-icons/fi";
+import { FiTrash } from "react-icons/fi";
 
 const ContactedQueriesList = () => {
   const [queries, setQueries] = useState([]);
@@ -23,23 +24,33 @@ const ContactedQueriesList = () => {
 
   const toggleExpand = (id) => {
     setExpandedQueryIds((prev) =>
-      prev.includes(id)
-        ? prev.filter((item) => item !== id)
-        : [...prev, id]
+      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
     );
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`http://localhost:5000/api/contact/delete/${id}`);
+      setQueries((prev) => prev.filter((q) => q._id !== id));
+    } catch (err) {
+      console.error("Error deleting query:", err);
+    }
   };
 
   return (
     <div className="space-y-3">
       {queries.length === 0 ? (
-        <p className="text-sm text-center text-gray-500">No contact queries found.</p>
+        <p className="text-sm text-center text-gray-500">
+          No contact queries found.
+        </p>
       ) : (
         queries.map((query) => {
           const isExpanded = expandedQueryIds.includes(query._id);
           const message = query.message || "";
-          const shortMessage = message.length > 100 && !isExpanded
-            ? `${message.slice(0, 100)}...`
-            : message;
+          const shortMessage =
+            message.length > 100 && !isExpanded
+              ? `${message.slice(0, 100)}...`
+              : message;
 
           return (
             <div
@@ -48,13 +59,19 @@ const ContactedQueriesList = () => {
             >
               <h3 className="text-sm font-semibold text-gray-800 mb-1">
                 📧 Email:
-                <span className="font-normal ml-1 text-gray-700 break-all">{query.email}</span>
+                <span className="font-normal ml-1 text-gray-700 break-all">
+                  {query.email}
+                </span>
               </h3>
               <h4 className="text-sm font-semibold text-gray-800 mb-1">
                 📝 Subject:
-                <span className="font-normal ml-1 text-gray-700">{query.subject}</span>
+                <span className="font-normal ml-1 text-gray-700">
+                  {query.subject}
+                </span>
               </h4>
-              <h4 className="text-sm font-semibold text-gray-800">📝 Message:</h4>
+              <h4 className="text-sm font-semibold text-gray-800">
+                📝 Message:
+              </h4>
               <p className="text-sm text-gray-700 italic">
                 “{shortMessage}”
                 {message.length > 100 && (
@@ -76,13 +93,22 @@ const ContactedQueriesList = () => {
                     year: "numeric",
                   })}
                 </p>
-                <a
-                  href={`mailto:${query.email}`}
-                  className="w-8 h-8 rounded-full bg-green-100 text-green-600 flex items-center justify-center hover:bg-green-200 transition"
-                  title="Reply"
-                >
-                  <FiArrowRight className="w-4 h-4" />
-                </a>
+                <div className="flex gap-2">
+                  <a
+                    href={`mailto:${query.email}`}
+                    className="w-8 h-8 rounded-full bg-green-100 text-green-600 flex items-center justify-center hover:bg-green-200 transition"
+                    title="Reply"
+                  >
+                    <FiArrowRight className="w-4 h-4" />
+                  </a>
+                  <button
+                    onClick={() => handleDelete(query._id)}
+                    className="w-8 h-8 rounded-full bg-red-100 text-red-600 flex items-center justify-center hover:bg-red-200 transition"
+                    title="Delete"
+                  >
+                    <FiTrash className="w-4 h-4" />
+                  </button>
+                </div>
               </div>
             </div>
           );

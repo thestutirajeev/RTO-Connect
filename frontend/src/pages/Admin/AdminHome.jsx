@@ -1,11 +1,11 @@
 import React from "react";
 import { FaChartPie } from "react-icons/fa"; // Placeholder for pie charts
 import Stats from "../../components/Stats/Stats";
-import ViewApplication from "./ViewApplication";
-import VehicleList from "./VehicleList";
-import ContactedQueriesList from "./ContactedQueriesList";
+import ViewApplication from "../../components/Admin/ViewApplication";
+import VehicleList from "../../components/Admin/VehicleList";
+import ContactedQueriesList from "../../components/Admin/ContactedQueriesList";
 import FeedbackList from "../../components/Feedbacks/FeedbackList";
-import UserList from "./UserList";
+import UserList from "../../components/Admin/UserList";
 const Card = ({ title, children }) => (
   <div className="bg-white shadow-md rounded-lg p-4 h-[260px] overflow-auto no-scrollbar">
     <h2 className="text-lg font-semibold mb-2">{title}</h2>
