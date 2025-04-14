@@ -13,7 +13,7 @@ import faqImg from '../assets/images/faq-img.png';
 import { Link } from 'react-router-dom';
 import { BsArrowRight } from 'react-icons/bs';
 import About from '../components/About/About';
-import ServiceList from '../components/Services/ServiceList';
+import ServiceList from '../pages/Services';
 import RTOOfficeList from '../components/RTOOffices/RTOOfficeList';
 import FaqList from '../components/Faq/FaqList';
 import Feedbacks from "../components/Feedbacks/Feedbacks";
@@ -165,7 +165,7 @@ const Home = () => {
         </div>
       </section>
       <About />
-      {/* =============== Services Section =============== */}
+      {/* =============== Services Section =============== 
       <section>
         <div className="container" id="service">
           <div className='xl:w-[470px] mx-auto'>
@@ -177,7 +177,7 @@ const Home = () => {
           <ServiceList/> 
         </div>
       </section>
-      {/* =============== Services End =============== */}
+       =============== Services End =============== */}
 
       {/* =============== Feature Section =============== */}
         <section>
@@ -200,7 +200,7 @@ const Home = () => {
                     3. Track Your Status – Get real-time updates on your applications and approvals.
                   </li>
                 </ul>
-                <Link to="/home#service">
+                <Link to="/services">
                   <button className='btn'>Learn More</button>
                 </Link>
               </div>
