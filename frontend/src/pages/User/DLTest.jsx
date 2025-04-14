@@ -3,6 +3,8 @@ import Question from "../../components/DLTest/Question";
 import Result from "../../components/DLTest/Result";
 import { useNavigate } from "react-router-dom";
 import heroBg from "../../assets/images/hero-bg.png";
+import testGif from "../../assets/images/test.gif"; // Make sure to replace with the actual path to your GIF
+
 
 const shuffleArray = (array) => array.sort(() => Math.random() - 0.5);
 
@@ -89,93 +91,118 @@ const DLTest = () => {
   };
 
   return (
-    <div
-      className="flex flex-col items-center justify-center min-h-screen bg-cover bg-center"
-      style={{
-        backgroundImage: `url(${heroBg})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
-    >
-      <div className="bg-white shadow-xl p-8 rounded-2xl w-[90%] sm:w-[500px] text-center">
-        {!started ? (
-          <div>
-            <h2 className="text-2xl font-bold mb-4 text-blue-700">
-              Driving License Test
-            </h2>
-            <p className="text-gray-700 mb-4 text-left">
-              Please read the instructions before starting:
-              <ul className="list-disc pl-5 mt-2 text-left text-sm">
-                <li>Total Questions: 10</li>
-                <li>Time per question: 15 seconds</li>
-                <li>Cannot go back after answering</li>
-              </ul>
-            </p>
-            <button
-              onClick={() => setStarted(true)}
-              className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition"
-            >
-              Start Test
-            </button>
+    <section className="px-2 sm:px-4 md:px-6">
+      <div className="max-w-[1170px] mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 min-h-screen rounded-lg overflow-hidden shadow-lg">
+          {/* Test GIF Section */}
+          <div className="hidden lg:block lg:col-span-5 bg-primaryColor">
+            <figure className="h-full w-full">
+              <img
+                src={testGif}
+                alt="Test"
+                className="w-full h-full object-contain"
+              />
+            </figure>
           </div>
-        ) : finished ? (
-          <Result score={score} total={questions.length} onRetry={handleRetake} />
-        ) : questions.length > 0 ? (
-          <div>
-            <div className="mb-3 text-sm text-gray-500">
-              Question {currentIndex + 1} of {questions.length}
-            </div>
-            <div className="w-full bg-gray-200 rounded-full h-2 mb-4">
-              <div
-                className="bg-green-500 h-2 rounded-full transition-all"
-                style={{
-                  width: `${((currentIndex + 1) / questions.length) * 100}%`,
-                }}
-              ></div>
-            </div>
-
-            <h3 className="text-lg font-semibold mb-4 text-gray-800">
-              {questions[currentIndex].question}
-            </h3>
-
-            <div className="space-y-2">
-              {questions[currentIndex].options.map((option, index) => {
-                const isCorrect = option === questions[currentIndex].answer;
-                const isSelected = option === selectedOption;
-                const optionClass = isAnswered
-                  ? isCorrect
-                    ? "bg-green-100 border-green-500 text-green-700"
-                    : isSelected
-                    ? "bg-red-100 border-red-500 text-red-700"
-                    : "bg-gray-100 border-gray-300"
-                  : "bg-white border-gray-300 hover:bg-blue-50";
-
-                return (
+  
+          {/* Test Content Section */}
+          <div
+            className="lg:col-span-7 bg-white p-6 md:p-8 flex flex-col items-center justify-center"
+            style={{
+              backgroundImage: `url(${heroBg})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          >
+            <div className="bg-white shadow-2xl p-6 md:p-8 rounded-2xl w-full max-w-[500px] text-center">
+              {!started ? (
+                <div>
+                  <h2 className="text-2xl font-bold mb-4 text-blue-700">
+                    Driving License Test
+                  </h2>
+                  <p className="text-gray-700 mb-4 text-left text-sm">
+                    Please read the instructions before starting:
+                    <ul className="list-disc pl-5 mt-2 text-left">
+                      <li>Total Questions: 10</li>
+                      <li>Time per question: 15 seconds</li>
+                      <li>Cannot go back after answering</li>
+                    </ul>
+                  </p>
                   <button
-                    key={index}
-                    onClick={() => handleOptionClick(option)}
-                    disabled={isAnswered}
-                    className={`w-full text-left px-4 py-2 border rounded-xl transition ${optionClass}`}
+                    onClick={() => setStarted(true)}
+                    className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition"
                   >
-                    {option}
+                    Start Test
                   </button>
-                );
-              })}
-            </div>
-
-            <div className="mt-4 text-sm text-gray-600">
-              Time Left:{" "}
-              <span className="font-semibold text-red-600">{timeLeft}s</span>
+                </div>
+              ) : finished ? (
+                <Result
+                  score={score}
+                  total={questions.length}
+                  onRetry={handleRetake}
+                />
+              ) : questions.length > 0 ? (
+                <div>
+                  <div className="mb-3 text-sm text-gray-500">
+                    Question {currentIndex + 1} of {questions.length}
+                  </div>
+                  <div className="w-full bg-gray-200 rounded-full h-2 mb-4">
+                    <div
+                      className="bg-green-500 h-2 rounded-full transition-all"
+                      style={{
+                        width: `${
+                          ((currentIndex + 1) / questions.length) * 100
+                        }%`,
+                      }}
+                    ></div>
+                  </div>
+  
+                  <h3 className="text-lg font-semibold mb-4 text-gray-800">
+                    {questions[currentIndex].question}
+                  </h3>
+  
+                  <div className="space-y-2">
+                    {questions[currentIndex].options.map((option, index) => {
+                      const isCorrect = option === questions[currentIndex].answer;
+                      const isSelected = option === selectedOption;
+                      const optionClass = isAnswered
+                        ? isCorrect
+                          ? "bg-green-100 border-green-500 text-green-700"
+                          : isSelected
+                          ? "bg-red-100 border-red-500 text-red-700"
+                          : "bg-gray-100 border-gray-300"
+                        : "bg-white border-gray-300 hover:bg-blue-50";
+  
+                      return (
+                        <button
+                          key={index}
+                          onClick={() => handleOptionClick(option)}
+                          disabled={isAnswered}
+                          className={`w-full text-left px-4 py-2 border rounded-xl transition ${optionClass}`}
+                        >
+                          {option}
+                        </button>
+                      );
+                    })}
+                  </div>
+  
+                  <div className="mt-4 text-sm text-gray-600">
+                    Time Left:{" "}
+                    <span className="font-semibold text-red-600">{timeLeft}s</span>
+                  </div>
+                </div>
+              ) : (
+                <p className="text-gray-700 font-medium animate-pulse">
+                  Loading questions...
+                </p>
+              )}
             </div>
           </div>
-        ) : (
-          <p className="text-gray-700 font-medium animate-pulse">
-            Loading questions...
-          </p>
-        )}
+        </div>
       </div>
-    </div>
+    </section>
   );
+  
 };
 
 export default DLTest;
