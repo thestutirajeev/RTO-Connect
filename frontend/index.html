@@ -5,10 +5,16 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>RTO Connect</title>
-    <!--<script src="https://checkout.razorpay.com/v1/checkout.js"></script>-->
+    <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    <df-messenger
+      intent="WELCOME"
+      chat-title="RTO Bot"
+      agent-id="rtoconnectbot-jtbn"
+      language-code="en"
+    ></df-messenger>
   </body>
 </html>
