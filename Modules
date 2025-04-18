@@ -1,0 +1,47 @@
+📦 Modules of RTO Connect and Their Working
+1. User Authentication Module
+•	Working: Users can register and login securely using JWT-based authentication. Passwords are hashed using bcryptjs.
+•	Backend: Routes handle registration/login and issue JWT tokens.
+•	Frontend: Login and signup forms, protected routes using context/auth.
+________________________________________
+2. Vehicle Registration Module
+•	Working: Users fill a form to register their vehicle by entering details such as owner name, vehicle type, chassis number, etc.
+•	Backend: Saves the data in MongoDB using Mongoose models.
+•	Frontend: Shows registration status.
+________________________________________
+3. Driving License Application Module
+•	Working: Allows users to apply for a driving license, and shows application status.
+•	Backend: Stores applicant data and sends status updates.
+•	Frontend: Provides form UI and shows status.
+________________________________________
+4. Fee Payment Module (Stripe Integration)
+•	Working: Enables users to pay application fees online using Stripe.
+•	Backend: Creates payment intents using Stripe Secret Key.
+•	Frontend: Stripe elements collect card details and process secure payments.
+________________________________________
+5. Admin Dashboard Module
+•	Working: Admins can view, approve, or reject applications for driving license and can view all stats of application and can also reply to user queries.
+•	Backend: Admin routes allow status update and fetching user applications.
+•	Frontend: Dashboard view with filters, approve/reject buttons, and charts using Chart.js.
+________________________________________
+6. ChatBot Module (DialogFlow Integration)
+•	Working: Provides conversational assistance using Google DialogFlow to answer queries related to RTO services like document list, process steps, etc.
+•	Frontend: Chat interface sends and receives responses from DialogFlow API.
+________________________________________
+7. Feedback and User Support Module
+•	Working: After completing a process (registration, payment, DL application), users can submit feedback or suggestions.
+•	Backend: Stores feedback with user info and timestamps in MongoDB.
+•	Frontend: Simple rating + text area form; confirmation popup after submission.
+________________________________________
+8. Driving License (DL) Test Module
+•	Working: Applicants can choose attempt online test before applying for DL.
+•	Backend: Stores test records.
+•	Frontend: Test through MCQs and test status display.
+________________________________________
+9. Vehicle Fitness Certificate Module
+•	Working: Allows users to apply for vehicle fitness certification,  and receive digital approval.
+•	Frontend: Fitness certificate form. PDF certificate can be downloaded post-approval.
+________________________________________
+
+
+
