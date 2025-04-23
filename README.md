@@ -14,8 +14,6 @@ A full-stack web application to automate the core services of the Regional Trans
 
 
 
-```markdown
-
 ---
 
 ## 🧾 Table of Contents
